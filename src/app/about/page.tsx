@@ -8,9 +8,9 @@ const gallery = [
   { src: "/photoWork.jpg", alt: "Photography 1", aspect: "aspect-[4/3]" },
   { src: "/photoWork1.jpg", alt: "Photography 2", aspect: "aspect-[4/3]" },
   { src: "/photoWork2.jpg", alt: "Photography 3", aspect: "aspect-[4/3]" },
-  { src: "/hero-3.jpg", alt: "Portfolio shot 3", aspect: "aspect-[4/3]" },
-  { src: "/featured-opportunity.jpg", alt: "Opportunity Circle", aspect: "aspect-[4/3]" },
-  { src: "/featured-pneumonia.jpg", alt: "UHealth", aspect: "aspect-[4/3]" },
+  { src: "/photoWork3.jpg", alt: "Portfolio shot 3", aspect: "aspect-[4/3]" },
+  { src: "/photoWork4.jpg", alt: "Opportunity Circle", aspect: "aspect-[4/3]" },
+  { src: "/photoWork5.jpg", alt: "UHealth", aspect: "aspect-[4/3]" },
 ];
 
 /** Rotating labels & images (5s) */
@@ -20,14 +20,14 @@ const DAY_ROLES = ["UX Designer", "UI Designer", "Product Designer"];
 const NIGHT_ROLES = ["Photographer", "Graphic Designer", "Game Developer"];
 
 const DAY_MEDIA = [
-  { src: "/hero-4.jpg", alt: "Primitivo at work" },
-  { src: "/featured-uw.jpg", alt: "Case study work view" },
-  { src: "/hero-2.jpg", alt: "Workspace detail" },
+  { src: "/hero-4.jpg", alt: "UX" },
+  { src: "/ui.jpg", alt: "UI" },
+  { src: "/prodDesign.jpg", alt: "Product" },
 ];
 const NIGHT_MEDIA = [
-  { src: "/hero-5.jpg", alt: "Photography & graphics" },
-  { src: "/featured-pneumonia.jpg", alt: "Hackathon project" },
-  { src: "/hero-3.jpg", alt: "Creative set" },
+  { src: "/photography.jpg", alt: "Photography" },
+  { src: "/graphicsDesign.jpg", alt: "Graphics Design" },
+  { src: "/hero-3.jpg", alt: "GameDev" },
 ];
 
 /** Motion variants */
@@ -67,7 +67,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Intro (extra top space so the H1 breathes under the site header) */}
-      <main className="container mx-auto px-6 pt-12 md:pt-20 pb-16 space-y-16">
+      <main className="container mx-auto px-6 pt-58 md:pt-60 lg:pt-58 pb-30 space-y-16">
         <section className="max-w-3xl space-y-6">
           <h1 className="text-3xl md:text-4xl font-semibold">I’m Primitivo</h1>
           <p className="text-neutral-700">

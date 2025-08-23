@@ -240,7 +240,7 @@ export default function HomePage() {
                 href="/about"
                 className="inline-flex items-center rounded-full border border-lime-400 px-5 py-2 text-sm text-lime-700 hover:bg-lime-50 transition"
               >
-                More about me →
+                But there's more!
               </a>
             </div>
           </div>
@@ -262,11 +262,10 @@ export default function HomePage() {
                   "321BUDDY",
                   "ux@uwt",
                   "Hot Rod Dog",
-                  "Tech Startup Club",
                   "Opportunity Circle",
                   "UW Tacoma",
                 ].map((b) => (
-                  <span key={b} className="brand-pill">
+                  <span key={b} className="brand-pill mx-6 shrink-0">
                     {b}
                   </span>
                 ))}
@@ -277,11 +276,10 @@ export default function HomePage() {
                   "321BUDDY",
                   "ux@uwt",
                   "Hot Rod Dog",
-                  "Tech Startup Club",
                   "Opportunity Circle",
                   "UW Tacoma",
                 ].map((b) => (
-                  <span key={b} className="brand-pill">
+                  <span key={b} className="brand-pill mx-6 shrink-0">
                     {b}
                   </span>
                 ))}
@@ -300,7 +298,7 @@ export default function HomePage() {
             title="File Management System"
             year="2025"
             tags={["Efficiency", "Organization", "Management"]}
-            imageSrc="/featured-uw.jpg"
+            imageSrc="/SETlib.jpg"
             savingsBadge="$38,000 Saved annually"
             usageBadge="IN USE BY THE UNIVERSITY OF WASHINGTON"
             client="University of Washington"
@@ -335,7 +333,7 @@ Led design teams and directed UI/UX strategy.`}
             title="The Opportunity Circle Website"
             year="2025"
             tags={["Inclusion", "Accessibility", "Empowerment"]}
-            imageSrc="/featured-opportunity.jpg"
+            imageSrc="/oppCircle.jpg"
             client="321Buddy"
             role="Designer & Developer"
             blurb={`Led design and development of The Opportunity Circle’s web experience.`}
