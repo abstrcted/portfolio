@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import clsx from "clsx";
 
-// Put your hero images in /public. Use any names you want; just update the paths below.
 const slides = [
   { src: "/hero-1.jpg", alt: "Hero image 1" },
   { src: "/hero-2.jpg", alt: "Hero image 2" },
@@ -22,7 +21,6 @@ export default function LandingHero() {
     setIndex(next);
   }, []);
 
-  // (Optional) auto-advance every 8s; comment out to disable
   useEffect(() => {
     const id = setInterval(() => goTo(index + 1), 8000);
     return () => clearInterval(id);

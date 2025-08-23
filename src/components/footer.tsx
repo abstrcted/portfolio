@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="grid grid-cols-12 gap-8">
           {/* Left: headline + email + socials */}
           <div className="col-span-12 md:col-span-7">
-            <p className="text-sm opacity-80">Let's create together!</p>
+            <p className="text-sm opacity-80">{"Let's create together!"}</p>
 
             <a
               href="mailto:primitivobambao@gmail.com"

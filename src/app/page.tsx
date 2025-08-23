@@ -18,7 +18,7 @@ const projects: Project[] = [
   { slug: "uw-file-system", title: "File Management System", year: "2025", badge: "$38,000 saved annually" },
 ];
 
-/** Slides for the landing hero (put these files in /public) */
+
 const slides = [
   { src: "/hero-1.jpg", alt: "Hero 1" },
   { src: "/hero-2.jpg", alt: "Hero 2" },
@@ -27,7 +27,7 @@ const slides = [
   { src: "/hero-5.jpg", alt: "Hero 5" },
 ];
 
-/** Rotating roles under the hero title (currently not rendered; kept if you want later) */
+
 const roles = ["UX Designer", "Product Designer", "Graphic Designer"];
 const ROLE_INTERVAL_MS = 2500;
 
@@ -57,7 +57,7 @@ export default function HomePage() {
     setIndex((i) => (i - 1 + slides.length) % slides.length);
   };
 
-  // Auto-advance every 8s (pause on hover)
+
   useEffect(() => {
     if (paused || slides.length <= 1) return;
     const id = setInterval(() => {
@@ -67,7 +67,7 @@ export default function HomePage() {
     return () => clearInterval(id);
   }, [paused]);
 
-  // Slide variants (direction-aware)
+
   const variants = useMemo(
     () => ({
       enter: (dir: 1 | -1) => ({ x: dir > 0 ? 60 : -60 }),
@@ -77,7 +77,7 @@ export default function HomePage() {
     []
   );
 
-  // Role text variants (if you render rotating roles later)
+
   const roleVariants = {
     enter: { y: 12, opacity: 0 },
     center: { y: 0, opacity: 1 },
