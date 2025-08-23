@@ -6,11 +6,11 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const gallery = [
   { src: "/photoWork.jpg", alt: "Photography 1", aspect: "aspect-[4/3]" },
-  { src: "/photoWork1.jpg", alt: "Photography 2", aspect: "aspect-[4/3]" },
-  { src: "/photoWork2.jpg", alt: "Photography 3", aspect: "aspect-[4/3]" },
+  { src: "/photoWork1.JPG", alt: "Photography 2", aspect: "aspect-[4/3]" },
+  { src: "/photoWork2.JPG", alt: "Photography 3", aspect: "aspect-[4/3]" },
   { src: "/photoWork3.jpg", alt: "Portfolio shot 3", aspect: "aspect-[4/3]" },
   { src: "/photoWork4.jpg", alt: "Opportunity Circle", aspect: "aspect-[4/3]" },
-  { src: "/photoWork5.jpg", alt: "UHealth", aspect: "aspect-[4/3]" },
+  { src: "/photoWork5.JPG", alt: "UHealth", aspect: "aspect-[4/3]" },
 ];
 
 /** Rotating labels & images (5s) */
