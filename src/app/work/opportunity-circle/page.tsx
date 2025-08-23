@@ -7,7 +7,7 @@ export default function OpportunityCircleCase() {
       subtitle="A clear and inclusive web presence for a local adult center that makes programs, schedules, and donations simple to find."
       role="Designer & Developer"
       client="321Buddy"
-      heroSrc="/featured-opportunity.jpg"
+      heroSrc="/oppCircleVert.png"
       heroAlt="Opportunity Circle website preview"
       sections={[
         // PROBLEM

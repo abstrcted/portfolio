@@ -27,7 +27,7 @@ const DAY_MEDIA = [
 const NIGHT_MEDIA = [
   { src: "/photography.jpg", alt: "Photography" },
   { src: "/graphicsDesign.jpg", alt: "Graphics Design" },
-  { src: "/hero-3.jpg", alt: "GameDev" },
+  { src: "/coding.jpg", alt: "GameDev" },
 ];
 
 /** Motion variants */
@@ -216,10 +216,21 @@ export default function AboutPage() {
 
       {/* Back to container: Gallery */}
       <main className="container mx-auto px-6 py-16">
-        <section className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section className="space-y-8">
+          {/* New heading */}
+          <div className="text-center">
+            <h2 className="text-2xl md:text-3xl font-semibold">
+              Some of my photography work!
+            </h2>
+          </div>
+
+          {/* Grid of images */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {gallery.map((g, i) => (
-              <div key={i} className={`relative w-full ${g.aspect} rounded-xl overflow-hidden bg-neutral-200`}>
+              <div
+                key={i}
+                className={`relative w-full ${g.aspect} rounded-xl overflow-hidden bg-neutral-200`}
+              >
                 <Image
                   src={g.src}
                   alt={g.alt}
@@ -232,6 +243,7 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
+
     </>
   );
 }
