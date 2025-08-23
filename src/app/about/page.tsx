@@ -218,8 +218,8 @@ export default function AboutPage() {
       <main className="container mx-auto px-6 py-16">
         <section className="space-y-8">
           {/* New heading */}
-          <div className="text-center">
-            <h2 className="text-2xl md:text-3xl font-semibold">
+          <div className="text-left">
+            <h2 className="text-2xl md:text-2xl font-regular">
               Some of my photography work!
             </h2>
           </div>
