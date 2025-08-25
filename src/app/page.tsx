@@ -18,7 +18,6 @@ const projects: Project[] = [
   { slug: "uw-file-system", title: "File Management System", year: "2025", badge: "$38,000 saved annually" },
 ];
 
-
 const slides = [
   { src: "/hero-1.jpg", alt: "Hero 1" },
   { src: "/hero-2.jpg", alt: "Hero 2" },
@@ -27,9 +26,26 @@ const slides = [
   { src: "/hero-5.jpg", alt: "Hero 5" },
 ];
 
-
 const roles = ["UX Designer", "Product Designer", "Graphic Designer"];
 const ROLE_INTERVAL_MS = 2500;
+
+/** Logos for the Trusted by marquee (place files in /public/logos) */
+const logos = [
+  { src: "/321Buddy.png", alt: "321Buddy" },
+  { src: "/hotdog.png", alt: "Hot Rod Dog" },
+  { src: "/federal-way.png", alt: "City of Federal Way" },
+  { src: "/uw-tacoma.png", alt: "University of Washington Tacoma" },
+  { src: "/tsc.png", alt: "Tech Startup Club" },
+  { src: "/ux.png", alt: "UX@UWT" },
+  { src: "/gidlab.png", alt: "GID Lab" },
+  { src: "/321Buddy.png", alt: "321Buddy" },
+  { src: "/hotdog.png", alt: "Hot Rod Dog" },
+  { src: "/federal-way.png", alt: "City of Federal Way" },
+  { src: "/uw-tacoma.png", alt: "University of Washington Tacoma" },
+  { src: "/tsc.png", alt: "Tech Startup Club" },
+  { src: "/ux.png", alt: "UX@UWT" },
+  { src: "/gidlab.png", alt: "GID Lab" },
+];
 
 export default function HomePage() {
   const [index, setIndex] = useState(0);
@@ -57,7 +73,6 @@ export default function HomePage() {
     setIndex((i) => (i - 1 + slides.length) % slides.length);
   };
 
-
   useEffect(() => {
     if (paused || slides.length <= 1) return;
     const id = setInterval(() => {
@@ -67,7 +82,6 @@ export default function HomePage() {
     return () => clearInterval(id);
   }, [paused]);
 
-
   const variants = useMemo(
     () => ({
       enter: (dir: 1 | -1) => ({ x: dir > 0 ? 60 : -60 }),
@@ -76,7 +90,6 @@ export default function HomePage() {
     }),
     []
   );
-
 
   const roleVariants = {
     enter: { y: 12, opacity: 0 },
@@ -245,47 +258,42 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Trusted by / brand marquee */}
-          <div className="space-y-6">
-            <h4 className="text-center text-sm uppercase tracking-widest text-neutral-500">Trusted by</h4>
+<div className="space-y-6">
+  <h4 className="text-center text-sm uppercase tracking-widest text-neutral-500">
+    Trusted by
+  </h4>
 
-            {/* marquee wrapper */}
-            <div className="group relative overflow-hidden">
-              {/* gradient edges */}
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent" />
+  {/* marquee wrapper */}
+  <div className="group relative overflow-hidden">
+    {/* gradient edges */}
+    <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent" />
+    <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent" />
 
-              {/* track — duplicate rows for seamless loop */}
-              <div className="marquee flex whitespace-nowrap will-change-transform">
-                {[
-                  "TSC",
-                  "321BUDDY",
-                  "ux@uwt",
-                  "Hot Rod Dog",
-                  "Opportunity Circle",
-                  "UW Tacoma",
-                ].map((b) => (
-                  <span key={b} className="brand-pill mx-6 shrink-0">
-                    {b}
-                  </span>
-                ))}
-
-                {/* duplicate set */}
-                {[
-                  "TSC",
-                  "321BUDDY",
-                  "ux@uwt",
-                  "Hot Rod Dog",
-                  "Opportunity Circle",
-                  "UW Tacoma",
-                ].map((b) => (
-                  <span key={b} className="brand-pill mx-6 shrink-0">
-                    {b}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+    {/* track — duplicate logos for seamless loop */}
+    <div
+      className="marquee flex items-center gap-15 whitespace-nowrap will-change-transform py-4"
+      aria-label="Trusted by logos"
+    >
+      {[...logos, ...logos].map((logo, i) => (
+        <div
+          key={`${logo.src}-${i}`}
+          className="shrink-0 h-14 md:h-16 lg:h-35 w-auto opacity-90 hover:opacity-100 transition"
+        >
+          <Image
+            src={`${logo.src}?v=4`}   // cache-bust if you replace files
+            alt={logo.alt}
+            width={400}
+            height={160}
+            className="h-full w-auto object-contain grayscale hover:grayscale-0"
+            sizes="(min-width:1280px) 200px, (min-width:768px) 160px, 120px"
+            unoptimized
+            priority={i < 6}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
         </section>
 
         {/* FEATURED WORK */}

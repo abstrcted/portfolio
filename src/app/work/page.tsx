@@ -19,7 +19,7 @@ const projects: Project[] = [
   {
     title: "File Organization System",
     kind: "UX & UI",
-    href: "/work/wildflower",
+    href: "/work/uw-file-system",
     src: "/mock1ALL.jpg",
     alt: "Large flower at night",
     span: "lg:col-span-8 lg:row-span-2", // big feature on left
@@ -28,7 +28,7 @@ const projects: Project[] = [
   {
     title: "The Opportunity Circle",
     kind: "Web Design",
-    href: "/work/fragment-watch",
+    href: "/work/opportunity-circle",
     src: "/oppCircle.jpg",
     alt: "3D watch render",
     span: "lg:col-span-4", // stacked right column
@@ -37,16 +37,16 @@ const projects: Project[] = [
   {
     title: "UHealth",
     kind: "UX & UI",
-    href: "/work/pepper-icons",
+    href: "/work/pneumonia-detector",
     src: "/mock2.jpg",
     alt: "Floating peppers on red",
     span: "lg:col-span-4",
     aspect: "aspect-[5/3]",
   },
   {
-    title: "Reactive Visuals",
-    kind: "Motion Design",
-    href: "/work/team-session",
+    title: "City of Federal Way Parks Program",
+    kind: "UX",
+    href: "/work/federal-way-mobile-rec",
     src: "/audio.jpg",
     alt: "Group in store",
     span: "lg:col-span-4",
@@ -55,16 +55,16 @@ const projects: Project[] = [
   {
     title: "Hot Rod Dog Redesign",
     kind: "Brand Design",
-    href: "/work/cone-lamp",
+    href: "/work/hot-rod-dog",
     src: "/hotdog.jpg",
     alt: "Cone lamp render",
     span: "lg:col-span-4",
     aspect: "aspect-[5/3]",
   },
   {
-    title: "Tile OS",
+    title: "UMarket",
     kind: "UX / UI",
-    href: "/work/tile-os",
+    href: "/work/umarket",
     src: "/mock3.jpg",
     alt: "Tile interface",
     span: "lg:col-span-4",

@@ -23,7 +23,7 @@ export default function UWFileSystemPage() {
             { title: "Missing uploads", body: "Not all worksheets made it back to the shared drive, so good content was lost." },
             { title: "Low incentive to curate", body: "Under time pressure, staff optimized for speed, not structured archiving." },
           ],
-          imageSrc: "/hero-2.jpg",
+          imageSrc: "/desktop3.png",
           imageAlt: "Legacy folder sprawl and duplication",
         },
 

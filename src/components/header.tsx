@@ -64,7 +64,7 @@ export default function Header() {
           <nav className="flex-1 flex justify-center">
             <ul className="flex items-center gap-8 text-sm">
               <li><Link href="/">Home</Link></li>
-              <li><Link href="/#work">Work</Link></li>
+              <li><Link href="/work">Work</Link></li>
               <li><Link href="/about">About</Link></li>
             </ul>
           </nav>

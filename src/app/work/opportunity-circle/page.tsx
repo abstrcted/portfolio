@@ -13,7 +13,7 @@ export default function OpportunityCircleCase() {
         // PROBLEM
         {
           eyebrow: "Problem",
-          title: "People could not find the center online and information lived in pockets",
+          title: "People couldn't find the center online and information lived in pockets",
           tocLabel: "Problem",
           intro:
             "There was no proper website. In user interviews with community members and staff, people said they relied on flyers, Facebook posts, and word of mouth to find details. Information about the new Opportunity Circle program was fragmented, which made it difficult to learn what the center offered or how to participate.",
@@ -23,7 +23,7 @@ export default function OpportunityCircleCase() {
             { title: "Program uncertainty", body: "The Opportunity Circle launch had no single home for updates or sign ups." },
             { title: "Interview insight", body: "Participants asked for a simple schedule first, then clear directions and cost." },
           ],
-          imageSrc: "/hero-1.jpg",
+          imageSrc: "/desktop2.png",
           imageAlt: "Before: scattered info",
         },
 
@@ -40,7 +40,7 @@ export default function OpportunityCircleCase() {
             { title: "Donations", body: "Simple entry, clear impact messaging, and receipts." },
             { title: "Accessibility", body: "Readable typography, sufficient contrast, keyboard navigation, and semantic HTML." },
           ],
-          imageSrc: "/hero-2.jpg",
+          imageSrc: "/desktop1.png",
           imageAlt: "Goals and primary pages",
         },
 
@@ -59,7 +59,7 @@ export default function OpportunityCircleCase() {
             { title: "Design system", body: "Type scale for readability, 8 point spacing, and a brand palette with WCAG AA contrast." },
             { title: "Performance and SEO", body: "Optimized images, alt text, metadata, and Open Graph for sharing." },
           ],
-          imageSrc: "/hero-3.jpg",
+          imageSrc: "/phone.png",
           imageAlt: "Component system",
         },
 
@@ -78,7 +78,7 @@ export default function OpportunityCircleCase() {
             { title: "Maintenance time", body: "Staff update a class in ~2 minutes using structured fields. *Placeholder*" },
             { title: "Accessibility", body: "Pages meet WCAG 2.2 AA for color contrast and keyboard navigation. *Placeholder*" },
           ],
-          imageSrc: "/hero-4.jpg",
+          imageSrc: "/desktop.png",
           imageAlt: "Live pages",
         },
       ]}
