@@ -7,12 +7,7 @@ import clsx from "clsx";
 import { ChevronLeft, ChevronRight, ArrowDown } from "lucide-react";
 import FeaturedCard from "@/components/featured-card";
 
-type Project = {
-  slug: string;
-  title: string;
-  year: string;
-  badge?: string;
-};
+type Project = { slug: string; title: string; year: string; badge?: string };
 
 const projects: Project[] = [
   { slug: "uw-file-system", title: "File Management System", year: "2025", badge: "$38,000 saved annually" },
@@ -64,38 +59,19 @@ export default function HomePage() {
     return () => clearInterval(id);
   }, []);
 
-  const next = () => {
-    setDirection(1);
-    setIndex((i) => (i + 1) % slides.length);
-  };
-  const prev = () => {
-    setDirection(-1);
-    setIndex((i) => (i - 1 + slides.length) % slides.length);
-  };
+  const next = () => { setDirection(1); setIndex((i) => (i + 1) % slides.length); };
+  const prev = () => { setDirection(-1); setIndex((i) => (i - 1 + slides.length) % slides.length); };
 
   useEffect(() => {
     if (paused || slides.length <= 1) return;
-    const id = setInterval(() => {
-      setDirection(1);
-      setIndex((i) => (i + 1) % slides.length);
-    }, 8000);
+    const id = setInterval(() => { setDirection(1); setIndex((i) => (i + 1) % slides.length); }, 8000);
     return () => clearInterval(id);
   }, [paused]);
 
   const variants = useMemo(
-    () => ({
-      enter: (dir: 1 | -1) => ({ x: dir > 0 ? 60 : -60 }),
-      center: { x: 0 },
-      exit: (dir: 1 | -1) => ({ x: dir > 0 ? -60 : 60 }),
-    }),
+    () => ({ enter: (dir: 1 | -1) => ({ x: dir > 0 ? 60 : -60 }), center: { x: 0 }, exit: (dir: 1 | -1) => ({ x: dir > 0 ? -60 : 60 }) }),
     []
   );
-
-  const roleVariants = {
-    enter: { y: 12, opacity: 0 },
-    center: { y: 0, opacity: 1 },
-    exit: { y: -12, opacity: 0 },
-  } as const;
 
   const goTo = (i: number) => {
     if (i === index) return;
@@ -121,20 +97,55 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    const onScroll = () => {
-      if (showCue && window.scrollY > 250) setShowCue(false);
-    };
+    const onScroll = () => { if (showCue && window.scrollY > 250) setShowCue(false); };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [showCue]);
+
+  // track mouse for hero glow
+  const [heroXY, setHeroXY] = useState<{ x: number; y: number }>({ x: -9999, y: -9999 });
 
   return (
     <LayoutGroup>
       <main className="container mx-auto px-6 space-y-24 py-12 md:py-16">
         {/* HERO */}
-        <section className="grid grid-cols-12 gap-8 items-start">
-          {/* Left column */}
-          <div className="col-span-12 md:col-span-5 md:min-h-[70vh] flex flex-col justify-center">
+        <section
+          className="relative grid grid-cols-12 gap-8 items-start"
+          onMouseMove={(e) => {
+            const r = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+            setHeroXY({ x: e.clientX - r.left, y: e.clientY - r.top });
+          }}
+        >
+          {/* Glow grid overlay spans the whole hero section */}
+          <div className="pointer-events-none absolute inset-0 z-0 hidden md:block">
+            {/* base faint grid */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(0,0,0,0.06) 1px, transparent 1px)
+                `,
+                backgroundSize: "24px 24px, 24px 24px",
+              }}
+            />
+            {/* glow grid near cursor */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(0,0,0,0.12) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(0,0,0,0.12) 1px, transparent 1px)
+                `,
+                backgroundSize: "24px 24px, 24px 24px",
+                maskImage: `radial-gradient(220px 220px at ${heroXY.x}px ${heroXY.y}px, rgba(255,255,255,0.95), rgba(255,255,255,0.1) 70%, transparent 100%)`,
+                WebkitMaskImage: `radial-gradient(220px 220px at ${heroXY.x}px ${heroXY.y}px, rgba(255,255,255,0.95), rgba(255,255,255,0.1) 70%, transparent 100%)`,
+              }}
+            />
+          </div>
+
+          {/* Left column (text) */}
+          <div className="col-span-12 md:col-span-5 md:min-h-[70vh] flex flex-col justify-center relative z-10">
             <motion.h1
               className="font-semibold tracking-tight leading-[0.9] [font-size:clamp(3.5rem,12vw,12rem)] text-black"
               initial={{ y: 20, opacity: 0 }}
@@ -144,15 +155,18 @@ export default function HomePage() {
               Hello!
             </motion.h1>
 
-            <p className="mt-4 text-lg text-neutral-700" style={{ marginLeft: "12px" }}>
+            <p className="mt-4 text-lg text-neutral-700 ml-3">
               I'm <span className="font-medium">Primitivo</span>, a UX Designer based in Washington.
+            </p>
+
+            {/* Tagline, clean small-text style */}
+            <p className="mt-3 ml-3 text-lg text-neutral-700 max-w-prose">
+              I merge logic, empathy, and design to solve real human problems.
             </p>
           </div>
 
           {/* Right column (image + UI) */}
-          {/* NOTE: overflow-x-hidden prevents the index badge from causing horizontal scroll */}
-          <div className="relative col-span-12 md:col-span-7 overflow-x-hidden">
-            {/* Image box */}
+          <div className="relative col-span-12 md:col-span-7 overflow-x-hidden z-10">
             <div
               className="relative overflow-hidden rounded-2xl bg-neutral-100 transform md:scale-90 transition-transform"
               onMouseEnter={() => setPaused(true)}
@@ -184,25 +198,20 @@ export default function HomePage() {
                 </AnimatePresence>
               </div>
 
-              {/* IN-CONTAINER arrows */}
+              {/* arrows */}
               <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-3">
                 <button
                   type="button"
                   aria-label="Previous image"
                   onClick={prev}
-                  onMouseEnter={() => setPaused(true)}
-                  onMouseLeave={() => setPaused(false)}
                   className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border bg-white/80 backdrop-blur hover:bg-white shadow-sm hover:shadow ring-1 ring-black/5 transition"
                 >
                   <ChevronLeft className="h-5 w-5 text-neutral-700" />
                 </button>
-
                 <button
                   type="button"
                   aria-label="Next image"
                   onClick={next}
-                  onMouseEnter={() => setPaused(true)}
-                  onMouseLeave={() => setPaused(false)}
                   className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border bg-white/80 backdrop-blur hover:bg-white shadow-sm hover:shadow ring-1 ring-black/5 transition"
                 >
                   <ChevronRight className="h-5 w-5 text-neutral-700" />
@@ -210,19 +219,15 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Big index number - slightly OUTSIDE top-right */}
+            {/* Big index number */}
             <div className="pointer-events-none absolute -right-3 -top-2 md:-right-1 md:-top-2 select-none text-black/90">
               <span className="text-[3.25rem] md:text-[4.5rem] font-light leading-none tracking-tight">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </div>
 
-            {/* Dots under the image */}
-            <div
-              className="mt-5 flex items-center justify-center gap-5"
-              onMouseEnter={() => setPaused(true)}
-              onMouseLeave={() => setPaused(false)}
-            >
+            {/* dots */}
+            <div className="mt-5 flex items-center justify-center gap-5">
               {slides.map((_, i) => (
                 <button
                   key={i}
@@ -258,42 +263,42 @@ export default function HomePage() {
             </div>
           </div>
 
-<div className="space-y-6">
-  <h4 className="text-center text-sm uppercase tracking-widest text-neutral-500">
-    Trusted by
-  </h4>
+          <div className="space-y-6">
+            <h4 className="text-center text-sm uppercase tracking-widest text-neutral-500">
+              Trusted by
+            </h4>
 
-  {/* marquee wrapper */}
-  <div className="group relative overflow-hidden">
-    {/* gradient edges */}
-    <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent" />
-    <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent" />
+            {/* marquee wrapper */}
+            <div className="group relative overflow-hidden">
+              {/* gradient edges */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent" />
 
-    {/* track — duplicate logos for seamless loop */}
-    <div
-      className="marquee flex items-center gap-15 whitespace-nowrap will-change-transform py-4"
-      aria-label="Trusted by logos"
-    >
-      {[...logos, ...logos].map((logo, i) => (
-        <div
-          key={`${logo.src}-${i}`}
-          className="shrink-0 h-14 md:h-16 lg:h-35 w-auto opacity-90 hover:opacity-100 transition"
-        >
-          <Image
-            src={`${logo.src}?v=4`}   // cache-bust if you replace files
-            alt={logo.alt}
-            width={400}
-            height={160}
-            className="h-full w-auto object-contain grayscale hover:grayscale-0"
-            sizes="(min-width:1280px) 200px, (min-width:768px) 160px, 120px"
-            unoptimized
-            priority={i < 6}
-          />
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
+              {/* track — duplicate logos for seamless loop */}
+              <div
+                className="marquee flex items-center gap-15 whitespace-nowrap will-change-transform py-4"
+                aria-label="Trusted by logos"
+              >
+                {[...logos, ...logos].map((logo, i) => (
+                  <div
+                    key={`${logo.src}-${i}`}
+                    className="shrink-0 h-14 md:h-16 lg:h-35 w-auto opacity-90 hover:opacity-100 transition"
+                  >
+                    <Image
+                      src={`${logo.src}?v=4`}
+                      alt={logo.alt}
+                      width={400}
+                      height={160}
+                      className="h-full w-auto object-contain grayscale hover:grayscale-0"
+                      sizes="(min-width:1280px) 200px, (min-width:768px) 160px, 120px"
+                      unoptimized
+                      priority={i < 6}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* FEATURED WORK */}
