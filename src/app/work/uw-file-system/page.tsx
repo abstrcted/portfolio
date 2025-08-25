@@ -3,8 +3,8 @@ import Case from "@/components/case";
 export default function UWFileSystemPage() {
   return (
     <Case
-      title="From cluttered to clean. Organization for the busiest facilitators in the world"
-      subtitle="Organization does not mean anything if you cannot find anything. I designed an organization tool for busy facilitators to fit their schedules and needs."
+      title="From cluttered to clean. Organization for the busiest facilitators in Tacoma."
+      subtitle="Organization doesn't mean anything if you can't find anything. I designed an organization tool for busy facilitators to fit their schedules and needs."
       role="Lead Designer"
       client="University of Washington"
       liveSiteLabel="SETLib"
@@ -16,10 +16,10 @@ export default function UWFileSystemPage() {
           title: "Worksheets were scattered, duplicated, and often lost",
           tocLabel: "Problem",
           intro:
-            "Staff create technical-problem worksheets across four categories, but turnover and ad hoc storage made reuse nearly impossible. Files lived as Word documents in Google Drive, and some were never uploaded at all. Teams grabbed whatever looked most recent, rebuilt what they could not find, and high-quality problems routinely disappeared.",
+            "Staff create technical-problem worksheets across four categories, but turnover and messy storage made reuse nearly impossible. Files lived as unorganized Word documents in a shared Google Drive, and some were never uploaded at all. Teams grabbed whatever looked most recent, rebuilt what they couldn't find, and high-quality problems routinely disappeared.",
           bullets: [
-            { title: "Fragmented storage", body: "Worksheets lived in personal drives and folders with inconsistent naming." },
-            { title: "Rework and duplication", body: "New staff rebuilt existing problems because they could not discover or verify prior work." },
+            { title: "Fragmented storage", body: "Worksheets lived in a cluttered shared drive." },
+            { title: "Rework and duplication", body: "New staff rebuilt existing problems because they couldn't discover or verify prior work." },
             { title: "Missing uploads", body: "Not all worksheets made it back to the shared drive, so good content was lost." },
             { title: "Low incentive to curate", body: "Under time pressure, staff optimized for speed, not structured archiving." },
           ],
@@ -48,7 +48,7 @@ export default function UWFileSystemPage() {
           title: "Structure the content, streamline the workflow, and enforce review",
           tocLabel: "Design Response",
           intro:
-            "We replaced file sprawl with a structured problem library and a simple, opinionated workflow that mirrors how staff actually work. The flow provides fast paths for creation and retrieval, and it adds quality gates without adding friction.",
+            "We replaced file sprawl with a structured problem library and a simple workflow that mirrors how staff actually work. The flow provides fast paths for creation and retrieval, and it adds quality gates without adding friction.",
           bullets: [
             { title: "Schema and tagging", body: "A normalized problem model with required fields for topic, subcategory, difficulty, style, and answer key." },
             { title: "Guided builder", body: "A step-by-step form that captures all metadata and previews the printable layout in real time." },
