@@ -27,14 +27,14 @@ const ROLE_INTERVAL_MS = 2500;
 
 /** Logos for the Trusted by marquee (place files in /public/logos) */
 const logos = [
-  { src: "/321Buddy.jpg", alt: "321Buddy" },
+  { src: "/321buddy.jpg", alt: "321Buddy" },
   { src: "/hotroddog.jpg", alt: "Hot Rod Dog" },
   { src: "/federal-way.jpg", alt: "City of Federal Way" },
   { src: "/uw-tacoma.jpg", alt: "University of Washington Tacoma" },
   { src: "/tsc.jpg", alt: "Tech Startup Club" },
   { src: "/ux.jpg", alt: "UX@UWT" },
   { src: "/gidlab.jpg", alt: "GID Lab" },
-  { src: "/321Buddy.jpg", alt: "321Buddy" },
+  { src: "/321buddy.jpg", alt: "321Buddy" },
   { src: "/hotroddog.jpg", alt: "Hot Rod Dog" },
   { src: "/federal-way.jpg", alt: "City of Federal Way" },
   { src: "/uw-tacoma.jpg", alt: "University of Washington Tacoma" },
