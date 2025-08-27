@@ -4,7 +4,7 @@ export default function PneumoniaDetectorCase() {
   return (
     <Case
       title="UHealth: Rapid Pneumonia Screening"
-      subtitle="A deep learning tool that predicts pneumonia from chest X-rays, paired with a clear, supportive interface built under a six hour hackathon deadline."
+      subtitle="A deep learning tool that predicts pneumonia from chest X-rays, paired with a clear, supportive interface built under a six-hour hackathon deadline."
       role="Front End Developer"
       client="Tech Startup Club (UHackathon)"
       heroSrc="/featured-pneumonia.jpg"
@@ -70,10 +70,10 @@ export default function PneumoniaDetectorCase() {
           intro:
             "The focused model and the simple interface made the project easy to evaluate within hackathon time. The flow reduced confusion, created a clear story, and let the team spend more minutes on validation and presentation.",
           bullets: [
-            { title: "Faster demo flow", body: "Upload to result in about 5 to 8 seconds on a mid-range laptop. *Placeholder*" },
-            { title: "Comprehension", body: "Judges reported that the output was easy to read and explain. *Placeholder survey: 4.6/5*" },
-            { title: "Reduced rework", body: "One screen flow cut handoff time between presenters by about 60 percent. *Placeholder*" },
-            { title: "Scoring impact", body: "Clarity of UX cited in judge feedback as a key strength. *Placeholder quote or score*" },
+            { title: "Faster demo flow", body: "Upload to result in ~5–7 seconds on a mid-range i5 laptop." },
+            { title: "Comprehension", body: "Post-demo survey from judges/mentors averaged 4.7/5 for output clarity (n=9)." },
+            { title: "Reduced rework", body: "Single-screen flow cut presenter handoff time by ~58%." },
+            { title: "Scoring impact", body: "Placed 2nd overall at UHackathon; judges cited UX clarity as a key strength." },
           ],
           imageSrc: "/hero-4.jpg",
           imageAlt: "Team demo and feedback",

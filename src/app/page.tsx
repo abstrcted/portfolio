@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight, ArrowDown } from "lucide-react";
 import FeaturedCard from "@/components/featured-card";
@@ -14,11 +15,11 @@ const projects: Project[] = [
 ];
 
 const slides = [
-  { src: "/hero-1.jpg", alt: "Hero 1" },
-  { src: "/hero-2.jpg", alt: "Hero 2" },
-  { src: "/hero-3.jpg", alt: "Hero 3" },
-  { src: "/hero-4.jpg", alt: "Hero 4" },
-  { src: "/hero-5.jpg", alt: "Hero 5" },
+  { src: "/mock.png", alt: "Hero 1" },
+  { src: "/oppCircleVert.png", alt: "Hero 2" },
+  { src: "/phone.png", alt: "Hero 3" },
+  { src: "/mock2.jpg", alt: "Hero 4" },
+  { src: "/desktop.png", alt: "Hero 5" },
 ];
 
 const roles = ["UX Designer", "Product Designer", "Graphic Designer"];
@@ -26,21 +27,54 @@ const ROLE_INTERVAL_MS = 2500;
 
 /** Logos for the Trusted by marquee (place files in /public/logos) */
 const logos = [
-  { src: "/321Buddy.png", alt: "321Buddy" },
-  { src: "/hotdog.png", alt: "Hot Rod Dog" },
-  { src: "/federal-way.png", alt: "City of Federal Way" },
-  { src: "/uw-tacoma.png", alt: "University of Washington Tacoma" },
-  { src: "/tsc.png", alt: "Tech Startup Club" },
-  { src: "/ux.png", alt: "UX@UWT" },
-  { src: "/gidlab.png", alt: "GID Lab" },
-  { src: "/321Buddy.png", alt: "321Buddy" },
-  { src: "/hotdog.png", alt: "Hot Rod Dog" },
-  { src: "/federal-way.png", alt: "City of Federal Way" },
-  { src: "/uw-tacoma.png", alt: "University of Washington Tacoma" },
-  { src: "/tsc.png", alt: "Tech Startup Club" },
-  { src: "/ux.png", alt: "UX@UWT" },
-  { src: "/gidlab.png", alt: "GID Lab" },
+  { src: "/321Buddy.jpg", alt: "321Buddy" },
+  { src: "/hotroddog.jpg", alt: "Hot Rod Dog" },
+  { src: "/federal-way.jpg", alt: "City of Federal Way" },
+  { src: "/uw-tacoma.jpg", alt: "University of Washington Tacoma" },
+  { src: "/tsc.jpg", alt: "Tech Startup Club" },
+  { src: "/ux.jpg", alt: "UX@UWT" },
+  { src: "/gidlab.jpg", alt: "GID Lab" },
+  { src: "/321Buddy.jpg", alt: "321Buddy" },
+  { src: "/hotroddog.jpg", alt: "Hot Rod Dog" },
+  { src: "/federal-way.jpg", alt: "City of Federal Way" },
+  { src: "/uw-tacoma.jpg", alt: "University of Washington Tacoma" },
+  { src: "/tsc.jpg", alt: "Tech Startup Club" },
+  { src: "/ux.jpg", alt: "UX@UWT" },
+  { src: "/gidlab.jpg", alt: "GID Lab" },
 ];
+
+/* ---------- Compact mobile tile (title only) ---------- */
+function MobileProjectTile({
+  title,
+  imageSrc,
+  href,
+}: {
+  title: string;
+  imageSrc: string;
+  href: string;
+}) {
+  return (
+    <Link href={href} className="block sm:hidden">
+      <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-neutral-200">
+        <Image
+          src={imageSrc}
+          alt={title}
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority={false}
+        />
+        {/* Bottom gradient + Title */}
+        <div className="absolute inset-x-0 bottom-0 p-4">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+          <h3 className="relative z-10 text-white text-lg font-medium drop-shadow">
+            {title}
+          </h3>
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export default function HomePage() {
   const [index, setIndex] = useState(0);
@@ -52,10 +86,7 @@ export default function HomePage() {
 
   const [roleIndex, setRoleIndex] = useState(0);
   useEffect(() => {
-    const id = setInterval(
-      () => setRoleIndex((i) => (i + 1) % roles.length),
-      ROLE_INTERVAL_MS
-    );
+    const id = setInterval(() => setRoleIndex((i) => (i + 1) % roles.length), ROLE_INTERVAL_MS);
     return () => clearInterval(id);
   }, []);
 
@@ -102,23 +133,23 @@ export default function HomePage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [showCue]);
 
-  // track mouse for hero glow
+  // track mouse for hero glow (as you had)
   const [heroXY, setHeroXY] = useState<{ x: number; y: number }>({ x: -9999, y: -9999 });
 
   return (
     <LayoutGroup>
-      <main className="container mx-auto px-6 space-y-24 py-12 md:py-16">
+      {/* MOBILE-ONLY top padding so hero clears header; desktop unchanged */}
+      <main className="container mx-auto px-6 space-y-24 py-12 md:py-16 pt-28 sm:pt-32 md:pt-16 lg:pt-20">
         {/* HERO */}
         <section
-          className="relative grid grid-cols-12 gap-8 items-start"
+          className="relative grid grid-cols-12 gap-6 sm:gap-8 items-start"
           onMouseMove={(e) => {
             const r = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
             setHeroXY({ x: e.clientX - r.left, y: e.clientY - r.top });
           }}
         >
-          {/* Glow grid overlay spans the whole hero section */}
+          {/* Glow overlay (desktop only) */}
           <div className="pointer-events-none absolute inset-0 z-0 hidden md:block">
-            {/* base faint grid */}
             <div
               className="absolute inset-0 opacity-10"
               style={{
@@ -129,7 +160,6 @@ export default function HomePage() {
                 backgroundSize: "24px 24px, 24px 24px",
               }}
             />
-            {/* glow grid near cursor */}
             <div
               className="absolute inset-0"
               style={{
@@ -159,7 +189,6 @@ export default function HomePage() {
               I'm <span className="font-medium">Primitivo</span>, a UX Designer based in Washington.
             </p>
 
-            {/* Tagline, clean small-text style */}
             <p className="mt-3 ml-3 text-lg text-neutral-700 max-w-prose">
               I merge logic, empathy, and design to solve real human problems.
             </p>
@@ -172,7 +201,8 @@ export default function HomePage() {
               onMouseEnter={() => setPaused(true)}
               onMouseLeave={() => setPaused(false)}
             >
-              <div className="aspect-[5/4] md:aspect-[10.5/10]">
+              {/* MOBILE-ONLY shorter aspect; desktop unchanged */}
+              <div className="aspect-[4/3] sm:aspect-[5/4] md:aspect-[10.5/10]">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.div
                     key={index}
@@ -198,13 +228,13 @@ export default function HomePage() {
                 </AnimatePresence>
               </div>
 
-              {/* arrows */}
-              <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-3">
+              {/* arrows (smaller on mobile) */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 sm:px-3">
                 <button
                   type="button"
                   aria-label="Previous image"
                   onClick={prev}
-                  className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border bg-white/80 backdrop-blur hover:bg-white shadow-sm hover:shadow ring-1 ring-black/5 transition"
+                  className="pointer-events-auto inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border bg-white/80 backdrop-blur hover:bg-white shadow-sm hover:shadow ring-1 ring-black/5 transition"
                 >
                   <ChevronLeft className="h-5 w-5 text-neutral-700" />
                 </button>
@@ -212,22 +242,22 @@ export default function HomePage() {
                   type="button"
                   aria-label="Next image"
                   onClick={next}
-                  className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border bg-white/80 backdrop-blur hover:bg-white shadow-sm hover:shadow ring-1 ring-black/5 transition"
+                  className="pointer-events-auto inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border bg-white/80 backdrop-blur hover:bg-white shadow-sm hover:shadow ring-1 ring-black/5 transition"
                 >
                   <ChevronRight className="h-5 w-5 text-neutral-700" />
                 </button>
               </div>
             </div>
 
-            {/* Big index number */}
-            <div className="pointer-events-none absolute -right-3 -top-2 md:-right-1 md:-top-2 select-none text-black/90">
+            {/* Big index number hidden on mobile */}
+            <div className="hidden sm:block pointer-events-none absolute -right-3 -top-2 md:-right-1 md:-top-2 select-none text-black/90">
               <span className="text-[3.25rem] md:text-[4.5rem] font-light leading-none tracking-tight">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </div>
 
             {/* dots */}
-            <div className="mt-5 flex items-center justify-center gap-5">
+            <div className="mt-4 sm:mt-5 flex items-center justify-center gap-4 sm:gap-5">
               {slides.map((_, i) => (
                 <button
                   key={i}
@@ -235,7 +265,7 @@ export default function HomePage() {
                   aria-current={i === index}
                   onClick={() => goTo(i)}
                   className={clsx(
-                    "h-3 w-3 rounded-full transition outline-none ring-offset-2 focus:ring-2",
+                    "h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full transition outline-none ring-offset-2 focus:ring-2",
                     i === index ? "bg-lime-400" : "bg-neutral-300 hover:bg-neutral-400"
                   )}
                 />
@@ -244,9 +274,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ABOUT + BRANDS */}
+        {/* ABOUT + BRANDS (unchanged) */}
         <section className="space-y-12 md:space-y-16">
-          {/* About me */}
           <div className="grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 md:col-span-12 md:col-start-1 space-y-6">
               <h3 className="text-sm uppercase tracking-widest text-neutral-500">About me</h3>
@@ -264,17 +293,12 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-6">
-            <h4 className="text-center text-sm uppercase tracking-widest text-neutral-500">
-              Trusted by
-            </h4>
+            <h4 className="text-center text-sm uppercase tracking-widest text-neutral-500">Trusted by</h4>
 
-            {/* marquee wrapper */}
             <div className="group relative overflow-hidden">
-              {/* gradient edges */}
               <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent" />
               <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent" />
 
-              {/* track — duplicate logos for seamless loop */}
               <div
                 className="marquee flex items-center gap-15 whitespace-nowrap will-change-transform py-4"
                 aria-label="Trusted by logos"
@@ -301,60 +325,81 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* FEATURED WORK */}
-        <section id="work" className="space-y-10 scroll-mt-24">
+        {/* FEATURED WORK — keep as you had (mobile tiles + desktop FeaturedCard) */}
+        <section id="work" className="space-y-8 md:space-y-10 scroll-mt-24">
           <h2 className="text-2xl font-medium">Featured work</h2>
 
-          {/* 01 */}
-          <FeaturedCard
-            index={1}
+          {/* 01 — UW File System */}
+          <MobileProjectTile
             title="File Management System"
-            year="2025"
-            tags={["Efficiency", "Organization", "Management"]}
             imageSrc="/SETlib.jpg"
-            savingsBadge="$38,000 Saved annually"
-            usageBadge="IN USE BY THE UNIVERSITY OF WASHINGTON"
-            client="University of Washington"
-            role="Lead Designer"
-            blurb={`Full redesign of the University of Washington Tacoma’s file management system.
+            href="/work/uw-file-system"
+          />
+          <div className="hidden sm:block">
+            <FeaturedCard
+              index={1}
+              title="File Management System"
+              year="2025"
+              tags={["Efficiency", "Organization", "Management"]}
+              imageSrc="/SETlib.jpg"
+              savingsBadge="$38,000 Saved annually"
+              usageBadge="IN USE BY THE UNIVERSITY OF WASHINGTON"
+              client="University of Washington"
+              role="Lead Designer"
+              blurb={`Full redesign of the University of Washington Tacoma’s file management system.
 Led design teams and directed UI/UX strategy.`}
-            ctaHref="/work/uw-file-system"
-          />
+              ctaHref="/work/uw-file-system"
+            />
+          </div>
 
-          <hr className="border-neutral-200/60" />
+          <hr className="border-neutral-200/60 hidden sm:block" />
 
-          {/* 02 */}
-          <FeaturedCard
-            index={2}
+          {/* 02 — Pneumonia Detector */}
+          <MobileProjectTile
             title="Pneumonia Detector"
-            year="2025"
-            tags={["Optimization", "Machine Learning", "Pressure"]}
             imageSrc="/featured-pneumonia.jpg"
-            savingsBadge="92% Prediction Rate"
-            usageBadge="SECOND PLACE AT HACKATHON"
-            client="Tech Startup Club"
-            role="Front End Developer"
-            blurb={`Convolutional neural network pneumonia screening model with 92% accuracy built within 6 hours.`}
-            ctaHref="/work/pneumonia-detector"
+            href="/work/pneumonia-detector"
           />
+          <div className="hidden sm:block">
+            <FeaturedCard
+              index={2}
+              title="Pneumonia Detector"
+              year="2025"
+              tags={["Optimization", "Machine Learning", "Pressure"]}
+              imageSrc="/featured-pneumonia.jpg"
+              savingsBadge="92% Prediction Rate"
+              usageBadge="SECOND PLACE AT HACKATHON"
+              client="Tech Startup Club"
+              role="Front End Developer"
+              blurb={`Convolutional neural network pneumonia screening model with 92% accuracy built within 6 hours.`}
+              ctaHref="/work/pneumonia-detector"
+            />
+          </div>
 
-          <hr className="border-neutral-200/60" />
+          <hr className="border-neutral-200/60 hidden sm:block" />
 
-          {/* 03 */}
-          <FeaturedCard
-            index={3}
+          {/* 03 — Opportunity Circle */}
+          <MobileProjectTile
             title="The Opportunity Circle Website"
-            year="2025"
-            tags={["Inclusion", "Accessibility", "Empowerment"]}
             imageSrc="/oppCircle.jpg"
-            client="321Buddy"
-            role="Designer & Developer"
-            blurb={`Led design and development of The Opportunity Circle’s web experience.`}
-            ctaHref="/work/opportunity-circle"
+            href="/work/opportunity-circle"
           />
+          <div className="hidden sm:block">
+            <FeaturedCard
+              index={3}
+              title="The Opportunity Circle Website"
+              year="2025"
+              tags={["Inclusion", "Accessibility", "Empowerment"]}
+              imageSrc="/oppCircle.jpg"
+              client="321Buddy"
+              role="Designer & Developer"
+              blurb={`Led design and development of The Opportunity Circle’s web experience.`}
+              ctaHref="/work/opportunity-circle"
+            />
+          </div>
 
           {/* View all projects button */}
-          <div className="pt-4 flex justify-center">
+          <div className="pt-2 md:pt-4 flex justify-center">
             <a
               href="/work"
               className="inline-flex items-center justify-center rounded-full border border-lime-400 text-lime-700 px-6 py-2 text-sm font-medium hover:bg-lime-50 transition"

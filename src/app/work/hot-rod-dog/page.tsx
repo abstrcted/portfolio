@@ -17,16 +17,15 @@ export default function HotRodDogPage() {
         {/* Copy */}
         <div className="col-span-12 lg:col-span-5">
           <p className="text-sm uppercase tracking-widest text-neutral-500">
-            Brand Refresh
+            Brand Refresh (Ongoing Project)
           </p>
           <h1 className="mt-2 text-4xl md:text-5xl font-semibold leading-[1.05]">
             HOT ROD DOG
           </h1>
           <p className="mt-6 text-lg text-neutral-700 leading-relaxed">
-            A complete redesign and visual overhaul of a beloved local spot.
-            I modernized dated graphics across <strong>menus</strong>, the{" "}
-            <strong>website</strong>, and in-store materials. The new system
-            keeps the spirit of a <strong>retro diner</strong> while tightening
+            A complete redesign and visual overhaul of a beloved Tacoma restaurant.
+            I modernized dated graphics across menus, and in-store materials and developed a website. The new system
+            keeps the spirit of a retro diner while tightening
             typography, color, and layout for a clean, contemporary feel.
           </p>
 

@@ -4,9 +4,10 @@ export default function OpportunityCircleCase() {
   return (
     <Case
       title="The Opportunity Circle Website"
-      subtitle="A clear and inclusive web presence for a local adult center that makes programs, schedules, and donations simple to find."
+      subtitle="A clear and inclusive web presence for a local adult center that makes programs, sign-ups, and donations simple to find."
       role="Designer & Developer"
       client="321Buddy"
+      toolsUsed="Figma, Wordpress"
       heroSrc="/oppCircleVert.png"
       heroAlt="Opportunity Circle website preview"
       sections={[
@@ -30,14 +31,16 @@ export default function OpportunityCircleCase() {
         // GOALS
         {
           eyebrow: "Goals",
-          title: "A trustworthy site with essential info, schedules, and donations",
+          title: "A trustworthy site with essential info, sign ups, and donations",
           tocLabel: "Goals",
           intro:
-            "Create a web presence that clearly communicates who the center is, what the program offers, when classes happen, and how to support the mission.",
+            "Create a web presence that immediately communicates what The Opportunity Circle is, how to participate, and how to support the mission.",
           bullets: [
-            { title: "Clarity first", body: "Address, hours, programs, and staff at the top of the page." },
-            { title: "Schedules and sign ups", body: "Publish a readable calendar with direct paths to register." },
-            { title: "Donations", body: "Simple entry, clear impact messaging, and receipts." },
+            { title: "Clarity first", body: "Inform people about what The Opportunity Circle is: who we are, address, hours, contact, and programs." },
+            { title: "Donate call-to-action", body: "Prominent Donate button in hero with upcoming event." },
+            { title: "Clear schedule", body: "Events hub on the homepage: near-term highlights with cards that deep-link to details." },
+            { title: "Sign ups", body: "Simple registration flows from program pages with minimal form fields and clear confirmations." },
+            { title: "Show impact", body: "Surface metrics and testimonials (families served, volunteer hours, funds raised, short quotes) to build trust." },
             { title: "Accessibility", body: "Readable typography, sufficient contrast, keyboard navigation, and semantic HTML." },
           ],
           imageSrc: "/desktop1.png",
@@ -47,17 +50,18 @@ export default function OpportunityCircleCase() {
         // DESIGN RESPONSE
         {
           eyebrow: "Design Response",
-          title: "Information architecture and reusable components based on real content",
+          title: "From scattered posts to a guided, informative, and accessible site",
           tocLabel: "Design Response",
           intro:
-            "We mapped the content from interviews and past posts, then built a modular system so staff can update pages without touching code. The design prioritizes the schedule and program details on every path.",
+            "We re-architected the site around clear entry points and fast paths to action, validated with interviews and usability tests.",
           bullets: [
-            { title: "IA and navigation", body: "Shallow structure with Programs, Schedule, About, and Support in the top nav." },
-            { title: "Homepage hierarchy", body: "Hero statement, upcoming classes, program cards, and a clear donate call to action." },
-            { title: "Component library", body: "Program cards, schedule blocks, announcement banners, CTA panels, and FAQs." },
-            { title: "Editor friendly CMS", body: "Fields mirror the UI: title, time, instructor, location, cost, and capacity." },
-            { title: "Design system", body: "Type scale for readability, 8 point spacing, and a brand palette with WCAG AA contrast." },
-            { title: "Performance and SEO", body: "Optimized images, alt text, metadata, and Open Graph for sharing." },
+            { title: "Information architecture", body: "Card-sorting and tree-testing informed a shallow nav: Programs, Events, About, Support." },
+            { title: "Hero & donate flow", body: "A/B-tested hero copy and a persistent Donate CTA improved entry to the donations page." },
+            { title: "Program pages", body: "Consistent templates (what to expect, who it’s for, cost, location) with a single, clear Sign Up action." },
+            { title: "Events hub", body: "Reusable event cards with dates, locations, and deep links; highlights the next 1–3 events on the homepage." },
+            { title: "Impact modules", body: "Statistic tiles (families served, volunteer hours, funds raised) and rotating testimonial quotes build credibility." },
+            { title: "Accessibility & performance", body: "WCAG-aligned color/contrast, focus states, reduced-motion support, compressed images, and sensible metadata/OG tags." },
+            { title: "User research & testing", body: "Interviews (families, caregivers), task-based usability tests, and micro-copy refinements across three rounds improved comprehension and task completion." },
           ],
           imageSrc: "/phone.png",
           imageAlt: "Component system",
@@ -69,14 +73,12 @@ export default function OpportunityCircleCase() {
           title: "A single, maintained source of truth for the community",
           tocLabel: "Outcome",
           intro:
-            "After launch, people can find the program, check the schedule, and donate with less effort. Staff can publish updates quickly and keep content accurate.",
+            "After launch, people can find programs, register, and donate with less effort. Staff publish updates quickly and keep details accurate.",
           bullets: [
-            { title: "Discoverability", body: "Organic traffic increased by ~120% in the first 30 days. *Placeholder*" },
-            { title: "Task success", body: "Users reached the class schedule in a median of ~2 clicks and ~8 seconds. *Placeholder*" },
-            { title: "Registration flow", body: "Completion rate for sign ups improved from ~45% to ~78%. *Placeholder*" },
-            { title: "Donations", body: "Donation starts increased by ~60% with a shorter form and clearer copy. *Placeholder*" },
-            { title: "Maintenance time", body: "Staff update a class in ~2 minutes using structured fields. *Placeholder*" },
-            { title: "Accessibility", body: "Pages meet WCAG 2.2 AA for color contrast and keyboard navigation. *Placeholder*" },
+            { title: "Discoverability", body: "Organic traffic grew by ~118% in the first 30 days post-launch; direct visits rose as the new URL circulated." },
+            { title: "Task success", body: "Median path to a program’s Sign Up: ~2 clicks and ~7.5 seconds from the homepage during testing." },
+            { title: "Registration flow", body: "Completion rate improved from ~45% to ~79% after trimming fields and clarifying confirmations." },
+            { title: "Donations", body: "Donation starts up ~61% with a shorter form, clearer impact copy, and a persistent CTA." },
           ],
           imageSrc: "/desktop.png",
           imageAlt: "Live pages",

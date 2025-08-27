@@ -19,6 +19,7 @@ type CaseProps = {
   subtitle?: string;
   role?: string;
   client?: string;
+  toolsUsed?: string;
   liveSiteLabel?: string;
   liveSiteHref?: string;
   heroSrc?: string;
@@ -35,6 +36,7 @@ export default function Case({
   subtitle,
   role,
   client,
+  toolsUsed,
   liveSiteLabel,
   liveSiteHref,
   heroSrc,
@@ -92,15 +94,18 @@ export default function Case({
   }, [ids]);
 
   return (
-    // Wider canvas so content + images breathe more
     <main className="mx-auto w-full max-w-[1636px] px-3 md:px-6 py-12 md:py-16">
-      {/* HERO BLOCK — unchanged except container width */}
+      {/* HERO BLOCK */}
       <div className="grid grid-cols-12 gap-0 md:gap-12">
         <div className="col-span-12 md:col-span-6 bg-neutral-50 px-6 md:px-10 py-12 space-y-8">
           <header className="space-y-6">
-            <h1 className="text-4xl md:text-5xl font-semibold leading-tight">{title}</h1>
+            <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
+              {title}
+            </h1>
             {subtitle && (
-              <p className="border-l-4 border-lime-400 pl-4 text-neutral-700">{subtitle}</p>
+              <p className="border-l-4 border-lime-400 pl-4 text-neutral-700">
+                {subtitle}
+              </p>
             )}
           </header>
 
@@ -115,6 +120,12 @@ export default function Case({
               <div>
                 <div className="text-neutral-500">Client</div>
                 <div className="text-neutral-900 font-medium">{client}</div>
+              </div>
+            )}
+            {toolsUsed && (
+              <div>
+                <div className="text-neutral-500">Tools Used</div>
+                <div className="text-neutral-900 font-medium">{toolsUsed}</div>
               </div>
             )}
             {liveSiteLabel && (
@@ -141,7 +152,13 @@ export default function Case({
         <div className="col-span-12 md:col-span-6">
           <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-200 m-6 md:m-0">
             {heroSrc && (
-              <Image src={heroSrc} alt={heroAlt || ""} fill className="object-cover" priority />
+              <Image
+                src={heroSrc}
+                alt={heroAlt || ""}
+                fill
+                className="object-cover"
+                priority
+              />
             )}
           </div>
         </div>
@@ -149,9 +166,8 @@ export default function Case({
 
       <hr className="my-12 border-neutral-200/70" />
 
-      {/* TOC (keep), Narrative wider, Right rail bigger */}
+      {/* TOC + Sections */}
       <div className="grid grid-cols-12 gap-8 md:gap-12 items-start px-1 md:px-0">
-        {/* TOC — untouched */}
         <nav className="hidden md:block col-span-2 sticky top-24 self-start">
           <ul className="space-y-2 text-sm">
             {sections.map((s, i) => {
@@ -176,18 +192,25 @@ export default function Case({
           </ul>
         </nav>
 
-        {/* Narrative (still comfy) */}
         <div className="col-span-12 md:col-span-7 space-y-16">
           {sections.map((s, i) => (
-            <section id={ids[i]} key={ids[i]} className="space-y-5 scroll-mt-24">
+            <section
+              id={ids[i]}
+              key={ids[i]}
+              className="space-y-5 scroll-mt-24"
+            >
               {s.eyebrow && (
                 <div className="text-xs uppercase tracking-widest text-neutral-500">
                   {s.eyebrow}
                 </div>
               )}
-              <h2 className="text-2xl font-semibold leading-snug">{s.title}</h2>
+              <h2 className="text-2xl font-semibold leading-snug">
+                {s.title}
+              </h2>
               {s.intro && (
-                <p className="border-l-4 border-lime-400 pl-4 text-neutral-700 max-w-prose">{s.intro}</p>
+                <p className="border-l-4 border-lime-400 pl-4 text-neutral-700 max-w-prose">
+                  {s.intro}
+                </p>
               )}
               {s.bullets && (
                 <ul className="space-y-6">
@@ -203,7 +226,6 @@ export default function Case({
           ))}
         </div>
 
-        {/* Right rail — wider so images are larger */}
         <aside className="col-span-12 md:col-span-3 space-y-8 md:sticky md:top-20">
           {sections.map(
             (s, i) =>
@@ -236,7 +258,6 @@ export default function Case({
           aria-label="Image viewer"
           onClick={closeLightbox}
         >
-          {/* LARGE, EASY CLOSE BUTTON */}
           <button
             onClick={closeLightbox}
             className="fixed top-4 right-4 z-[110] w-12 h-12 rounded-full bg-white/95 hover:bg-white shadow focus:outline-none focus:ring-2 focus:ring-lime-400 flex items-center justify-center text-base font-medium"
@@ -245,12 +266,10 @@ export default function Case({
             ✕
           </button>
 
-          {/* Stop propagation inside panel */}
           <div
             className="relative max-w-[95vw] max-h-[90vh] w-full h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Full image, no crop */}
             <div className="relative w-full h-full">
               <Image
                 src={lightboxSrc}

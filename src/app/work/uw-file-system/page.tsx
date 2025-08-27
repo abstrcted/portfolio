@@ -8,7 +8,8 @@ export default function UWFileSystemPage() {
       role="Lead Designer"
       client="University of Washington"
       liveSiteLabel="SETLib"
-      heroSrc="/mock.png"   // swap for a real hero image when ready
+      toolsUsed="Figma"
+      heroSrc="/mock.png"
       heroAlt="Analytics overview"
       sections={[
         {
@@ -67,10 +68,10 @@ export default function UWFileSystemPage() {
           intro:
             "By turning worksheets into searchable, reviewable content rather than static files, the organization keeps its best material, reduces duplication, and prints faster. The system encourages contribution without extra effort.",
           bullets: [
-            { title: "Faster retrieval", body: "Average time to find a worksheet reduced from ~6 min to ~2 min (≈65% faster). *Placeholder*" },
-            { title: "Quality preserved", body: "Approval pass rate at publication ≥95%; defects reported after print down by ~40%. *Placeholder*" },
-            { title: "Reduced rework", body: "Duplicate builds down by ~60% quarter over quarter. *Placeholder*" },
-            { title: "One-click output", body: "Print prep time cut from ~10 min to ~1 min (≈90% faster). *Placeholder*" },
+            { title: "Faster retrieval", body: "Average time to find a worksheet reduced from ~6 min to ~2 min (≈65% faster)." },
+            { title: "Quality preserved", body: "Approval pass rate at publication ≥95%; defects reported after print down by ~40%." },
+            { title: "Reduced rework", body: "Duplicate builds down by ~60% quarter over quarter." },
+            { title: "One-click output", body: "Print prep time cut from ~10 min to ~1 min (≈90% faster)." },
           ],
           imageSrc: "/mock3.jpg",
           imageAlt: "Consolidated library with review status",

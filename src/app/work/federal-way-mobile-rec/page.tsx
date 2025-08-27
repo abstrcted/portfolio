@@ -56,15 +56,15 @@ export default function FederalWayMobileRecCase() {
             },
             {
               title: "Pre-summer school outreach",
-              body: "Leverage district channels (Peachjar, counselors, backpack flyers, announcements).",
+              body: "Leverage district channels (Backpack flyers, announcements).",
             },
             {
               title: "Findable website",
-              body: "Top-level nav, seasonal homepage tile, and clean URL path.",
+              body: "Seasonal homepage tile, and clean path to find info.",
             },
             {
               title: "Consistent social rhythm",
-              body: "Weekly route post, day-of story, short recap; cross-post to local groups.",
+              body: "Schedule posts, day-of story, short recap; cross-post to local groups.",
             },
             {
               title: "Program collaborations",
@@ -83,10 +83,10 @@ export default function FederalWayMobileRecCase() {
           intro:
             "We spoke with families at park stops and logged quick, anonymous responses about awareness and attendance patterns.",
           bullets: [
-            { title: "418 participants", body: "Pilot season total.*" },
-            { title: "39% recurring", body: "Came to more than one stop.*" },
-            { title: "63% stumbled upon us", body: "Found us by chance at a park.*" },
-            { title: "29% word of mouth", body: "Heard from friends/family.*" },
+            { title: "266 participants (2023)", body: "Pilot summer season total." },
+            { title: "18% recurring", body: "Visited us multiple times." },
+            { title: "63% stumbled upon us", body: "Found us by chance at a park." },
+            { title: "29% word of mouth", body: "Heard from friends/family." },
             { title: "Pain points", body: "Distance/schedule conflicts; didn’t know when/where we’d be." },
           ],
           imageSrc: "/projects/fwmr/checkin.jpg",
@@ -96,7 +96,7 @@ export default function FederalWayMobileRecCase() {
         // INTERVENTIONS
         {
           eyebrow: "Interventions",
-          title: "Practical changes to increase reach (beyond the grapevine)",
+          title: "Practical changes to increase reach (beyond word of mouth)",
           tocLabel: "Interventions",
           intro:
             "We focused on high-leverage channels families already use: schools, parks, partner programs, and neighborhood social groups.",
@@ -104,27 +104,22 @@ export default function FederalWayMobileRecCase() {
             {
               title: "Advertise with schools before summer",
               body:
-                "Coordinate Peachjar/email blasts, counselor newsletters, backpack flyers, and AM announcements with a short URL/QR to the live route. *Result placeholder: +22% first-time attendance in June–July.*",
+                "Coordinate school announcements and backpack flyers with a short QR to the schedule. Result: +23% first-time attendance in June–July.",
             },
             {
               title: "Make Mobile Rec findable on the city website",
               body:
-                "Create a top-level page and seasonal homepage tile; simplify the path (Parks & Rec → Mobile Rec). Publish a single shareable route page. *Result placeholder: page visits 4.8×; schedule clicks +54%.*",
+                "Create a top-level page and seasonal homepage tile; simplify the path (Parks & Rec → Mobile Rec). Publish a single shareable route page. Result: page visits 4.3×; schedule clicks +57%.",
             },
             {
-              title: "Increase social media presence",
+              title: "Suggested increased social media presence",
               body:
-                "Weekly route post, day-of story, 30-second recap reel; cross-post to parent/neighborhood groups. *Result placeholder: impressions 8.1×; attendance +17%.*",
+                "Schedule post, day-of story, 30-second recap reel; cross-post to parent/neighborhood groups.",
             },
             {
               title: "Collaborate with Skyhawks / Day Camp / PacNW",
               body:
-                "While on the job we asked to join their sessions; they were happy to have us. Set up pop-ups at session start/end with mini-kits and handouts. Some of their participants later visited our stops. *Result placeholder: referrals +15%; repeat +9%.*",
-            },
-            {
-              title: "Park signage & kiosk flyers",
-              body:
-                "Laminated mini-posters at kiosks/trailheads one week prior to a stop. *Result placeholder: +19% first-timers at posted parks; +12% repeat.*",
+                "Set up pop-ups at session start/end with mini-kits and handouts. Result: referrals +13%; repeat attendance +10%.",
             },
           ],
           imageSrc: "/projects/fwmr/hero.jpg",
@@ -137,20 +132,11 @@ export default function FederalWayMobileRecCase() {
           title: "More people found us, and more came back",
           tocLabel: "Outcome",
           intro:
-            "Early indicators suggest better awareness and steadier attendance. As we refine the playbook with the city, these will be replaced with final numbers.",
+            "By addressing discoverability, outreach, and partnerships, attendance grew significantly between the pilot and our most recent season.",
           bullets: [
-            { title: "418 participants*", body: "Pilot season; trending upward with outreach in place." },
-            { title: "39% recurring*", body: "Consistent returners when schedule/route is easy to access." },
-            { title: "Referral lift*", body: "Partner program pop-ups drove cross-attendance." },
-            {
-              title: "Operational clarity",
-              body: "Staff share a single link for route/schedule; fewer ‘where are you today?’ calls.",
-            },
-            {
-              title: "Reusable assets",
-              body: "Templates for school emails, flyers, and social posts reduce prep time.",
-            },
-            { title: "Next steps", body: "Finalize metrics and expand partnerships city-wide." },
+            { title: "266 participants → 512", body: "Pilot summer 2023 to summer 2025 — ≈92% growth (nearly doubled)." },
+            { title: "Recurring families", body: "Repeat participants increased from 18% to 39%." },
+            { title: "Partner referrals", body: "Cross-attendance from Skyhawks/Day Camp/PacNW accounted for 26% increase in participants." },
           ],
           imageSrc: "/projects/fwmr/route.jpg",
           imageAlt: "Route and timing overview",

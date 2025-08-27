@@ -3,7 +3,9 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
+/* ---- gallery below the sections (unchanged) ---- */
 const gallery = [
   { src: "/photoWork.jpg", alt: "Photography 1", aspect: "aspect-[4/3]" },
   { src: "/photoWork1.JPG", alt: "Photography 2", aspect: "aspect-[4/3]" },
@@ -30,6 +32,14 @@ const NIGHT_MEDIA = [
   { src: "/coding.jpg", alt: "GameDev" },
 ];
 
+/** NEW: intro carousel slides */
+const ABOUT_SLIDES = [
+  { src: "/meirl.jpg", alt: "Me, real life" },
+  { src: "/minecraftme.jpg", alt: "Me, Minecraft edition" },
+  { src: "/robloxme.jpg", alt: "Me, Roblox edition" },
+  { src: "/destinyme.jpg", alt: "Me, Destiny" },
+];
+
 /** Motion variants */
 const textVariants = {
   enter: { y: 10, opacity: 0 },
@@ -46,6 +56,9 @@ export default function AboutPage() {
   const [dayIdx, setDayIdx] = useState(0);
   const [nightIdx, setNightIdx] = useState(0);
 
+  // NEW: intro carousel state
+  const [aboutIdx, setAboutIdx] = useState(0);
+
   useEffect(() => {
     const id = setInterval(() => {
       setDayIdx((i) => (i + 1) % Math.max(DAY_ROLES.length, DAY_MEDIA.length));
@@ -54,34 +67,100 @@ export default function AboutPage() {
     return () => clearInterval(id);
   }, []);
 
+  // Arrow-key support for the intro carousel
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") nextAbout();
+      if (e.key === "ArrowLeft") prevAbout();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   const dayRole = DAY_ROLES[dayIdx % DAY_ROLES.length];
   const dayImg = DAY_MEDIA[dayIdx % DAY_MEDIA.length];
 
   const nightRole = NIGHT_ROLES[nightIdx % NIGHT_ROLES.length];
   const nightImg = NIGHT_MEDIA[nightIdx % NIGHT_MEDIA.length];
 
-  // Helper: longest strings to reserve width so the header doesn't "jump"
   const LONGEST_DAY_ROLE = DAY_ROLES.reduce((a, b) => (b.length > a.length ? b : a), DAY_ROLES[0]);
   const LONGEST_NIGHT_ROLE = NIGHT_ROLES.reduce((a, b) => (b.length > a.length ? b : a), NIGHT_ROLES[0]);
 
+  /* intro carousel helpers */
+  const nextAbout = () => setAboutIdx((i) => (i + 1) % ABOUT_SLIDES.length);
+  const prevAbout = () => setAboutIdx((i) => (i - 1 + ABOUT_SLIDES.length) % ABOUT_SLIDES.length);
+
   return (
     <>
-      {/* Intro (extra top space so the H1 breathes under the site header) */}
-      <main className="container mx-auto px-6 pt-58 md:pt-60 lg:pt-58 pb-30 space-y-16">
-        <section className="max-w-3xl space-y-6">
-          <h1 className="text-3xl md:text-4xl font-semibold">I’m Primitivo</h1>
-          <p className="text-neutral-700">
-            A designer and artist with a background in science, I approach design as more than just a
-             career—it’s a lens through which I see the world. My work in UX is driven by curiosity, 
-             problem-solving, and a desire to craft experiences that feel intuitive and meaningful. 
-             Blending creativity with structured thinking, I bring both an analytical and artistic 
-             perspective to design challenges.
-          </p>
-          <p className="text-neutral-700">
-            Outside of design, I play pickleball, do photography, dive into video games, and can share a surprising 
-            amount of Halo lore. I love learning new things and can talk for hours about space,
-             science, games, art, anime, and design.
-          </p>
+      {/* Intro with RIGHT-SIDE image carousel */}
+      <main className="container mx-auto px-6 pt-58 md:pt-60 lg:pt-58 pb-30">
+        <section className="grid grid-cols-12 gap-32 items-center">
+          {/* Left: copy */}
+          <div className="col-span-12 md:col-span-7 space-y-6 flex flex-col justify-end">
+            <h1 className="text-3xl md:text-4xl font-semibold">I’m Primitivo</h1>
+            <p className="text-neutral-700">
+              A designer and artist with a background in science, I approach design as more than just a
+              career—it’s a lens through which I see the world. My work in UX is driven by curiosity,
+              problem-solving, and a desire to craft experiences that feel intuitive and meaningful.
+              Blending creativity with structured thinking, I bring both an analytical and artistic
+              perspective to design challenges.
+            </p>
+            <p className="text-neutral-700">
+              Outside of design, I play pickleball, do photography, dive into video games, and can share a surprising
+              amount of Halo lore. I love learning new things and can talk for hours about space,
+              science, games, art, anime, and design.
+            </p>
+          </div>
+
+          {/* Right: image carousel */}
+          <div className="col-span-12 md:col-span-4">
+            <div className="relative aspect-[1/1] rounded-xl overflow-hidden bg-neutral-200">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={ABOUT_SLIDES[aboutIdx].src}
+                  className="absolute inset-0"
+                  initial={{ opacity: 0.8, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0.8, scale: 1.01 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  <Image
+                    src={ABOUT_SLIDES[aboutIdx].src}
+                    alt={ABOUT_SLIDES[aboutIdx].alt}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* arrows */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between p-3">
+                <button
+                  type="button"
+                  aria-label="Previous photo"
+                  className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/85 backdrop-blur shadow hover:bg-white transition"
+                  onClick={prevAbout}
+                >
+                  <ChevronLeft className="h-5 w-5 text-neutral-800" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next photo"
+                  className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/85 backdrop-blur shadow hover:bg-white transition"
+                  onClick={nextAbout}
+                >
+                  <ChevronRight className="h-5 w-5 text-neutral-800" />
+                </button>
+              </div>
+
+              {/* index chip */}
+              <div className="absolute bottom-3 right-3 rounded-full bg-black/60 text-white text-xs px-2 py-1">
+                {aboutIdx + 1} / {ABOUT_SLIDES.length}
+              </div>
+            </div>
+          </div>
         </section>
       </main>
 
@@ -90,13 +169,11 @@ export default function AboutPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 md:col-span-7 space-y-4">
-              {/* Header: keep role on ONE line; allow small 'by day' to wrap if needed */}
               <div className="flex items-baseline gap-3 flex-wrap">
                 <h2 className="relative text-2xl md:text-3xl font-semibold whitespace-nowrap shrink-0">
-                  {/* animated label */}
                   <AnimatePresence mode="wait">
                     <motion.span
-                      key={dayRole}
+                      key={DAY_ROLES[dayIdx % DAY_ROLES.length]}
                       variants={textVariants}
                       initial="enter"
                       animate="center"
@@ -104,12 +181,11 @@ export default function AboutPage() {
                       transition={{ duration: 0.35, ease: "easeOut" }}
                       className="absolute inset-0 whitespace-nowrap"
                     >
-                      {dayRole}
+                      {DAY_ROLES[dayIdx % DAY_ROLES.length]}
                     </motion.span>
                   </AnimatePresence>
-                  {/* invisible spacer to lock width to the longest label */}
                   <span aria-hidden className="invisible">
-                    {LONGEST_DAY_ROLE}
+                    {DAY_ROLES.reduce((a, b) => (b.length > a.length ? b : a), DAY_ROLES[0])}
                   </span>
                 </h2>
                 <span className="text-neutral-500">by day</span>
@@ -124,7 +200,6 @@ export default function AboutPage() {
 
             <div className="col-span-12 md:col-span-5">
               <div className="relative aspect-[4/5] rounded-xl bg-neutral-200 overflow-hidden">
-                {/* Crossfade image */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={dayImg.src}
@@ -156,7 +231,6 @@ export default function AboutPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-12 gap-8 items-start">
             <div className="col-span-12 md:col-span-7 space-y-4">
-              {/* Header: keep role on ONE line; allow small 'by night' to wrap if needed */}
               <div className="flex items-baseline gap-3 flex-wrap">
                 <h2 className="relative text-2xl md:text-3xl font-semibold whitespace-nowrap shrink-0">
                   <AnimatePresence mode="wait">
@@ -217,14 +291,10 @@ export default function AboutPage() {
       {/* Back to container: Gallery */}
       <main className="container mx-auto px-6 py-16">
         <section className="space-y-8">
-          {/* New heading */}
           <div className="text-left">
-            <h2 className="text-2xl md:text-2xl font-regular">
-              Some of my photography work!
-            </h2>
+            <h2 className="text-2xl md:text-2xl font-regular">Some of my photography work!</h2>
           </div>
 
-          {/* Grid of images */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {gallery.map((g, i) => (
               <div
@@ -243,7 +313,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-
     </>
   );
 }
