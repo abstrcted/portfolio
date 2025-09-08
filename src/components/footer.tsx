@@ -55,7 +55,7 @@ export default function Footer() {
         <div className="mt-12 border-t border-white/30 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex gap-10 text-sm">
             {/* keep this as a mailto (no dead /contact link) */}
-            <a href="mailto:primitivo@example.com" className="hover:opacity-90">
+            <a href="mailto:primitivobambao@gmail.com" className="hover:opacity-90">
               Contact me!
             </a>
           </div>

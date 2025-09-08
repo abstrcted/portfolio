@@ -8,7 +8,7 @@ export default function FederalWayMobileRecCase() {
       subtitle="Bringing structured play to parks and neighborhoods—and making it easy to discover where we’ll be next."
       role="Researcher & Designer"
       client="City of Federal Way Parks & Recreation"
-      heroSrc="/projects/fwmr/hero.jpg"
+      heroSrc="/recvan.jpg"
       heroAlt="Mobile Recreation event with families doing outdoor activities"
       sections={[
         // PROBLEM
@@ -37,8 +37,6 @@ export default function FederalWayMobileRecCase() {
               body: "Nearby programs (Skyhawks, Day Camp, Pac NW Soccer) ran in parallel without structured collaboration.",
             },
           ],
-          imageSrc: "/projects/fwmr/route.jpg",
-          imageAlt: "Weekly route map and time blocks for neighborhood stops",
         },
 
         // GOALS
@@ -71,8 +69,6 @@ export default function FederalWayMobileRecCase() {
               body: "Coordinate pop-ups with Skyhawks/Day Camp/PacNW to tap adjacent audiences.",
             },
           ],
-          imageSrc: "/projects/fwmr/activity.jpg",
-          imageAlt: "Activities setup with cones, balls, crafts, and shade canopies",
         },
 
         // RESEARCH & INSIGHTS
@@ -87,16 +83,16 @@ export default function FederalWayMobileRecCase() {
             { title: "18% recurring", body: "Visited us multiple times." },
             { title: "63% stumbled upon us", body: "Found us by chance at a park." },
             { title: "29% word of mouth", body: "Heard from friends/family." },
-            { title: "Pain points", body: "Distance/schedule conflicts; didn’t know when/where we’d be." },
+            { title: "Pain points", body: "Distance/schedule conflicts; didn’t know when/where we’d be, didn't even know about us." },
           ],
-          imageSrc: "/projects/fwmr/checkin.jpg",
-          imageAlt: "Mobile check-in and consent form on a phone",
+          imageSrc: "/recvan1.jpg",
+          imageAlt: "Picture of kids gathered with Mobile Recreation staff",
         },
 
         // INTERVENTIONS
         {
           eyebrow: "Interventions",
-          title: "Practical changes to increase reach (beyond word of mouth)",
+          title: "Practical changes to increase reach",
           tocLabel: "Interventions",
           intro:
             "We focused on high-leverage channels families already use: schools, parks, partner programs, and neighborhood social groups.",
@@ -112,18 +108,13 @@ export default function FederalWayMobileRecCase() {
                 "Create a top-level page and seasonal homepage tile; simplify the path (Parks & Rec → Mobile Rec). Publish a single shareable route page. Result: page visits 4.3×; schedule clicks +57%.",
             },
             {
-              title: "Suggested increased social media presence",
-              body:
-                "Schedule post, day-of story, 30-second recap reel; cross-post to parent/neighborhood groups.",
-            },
-            {
               title: "Collaborate with Skyhawks / Day Camp / PacNW",
               body:
                 "Set up pop-ups at session start/end with mini-kits and handouts. Result: referrals +13%; repeat attendance +10%.",
             },
           ],
-          imageSrc: "/projects/fwmr/hero.jpg",
-          imageAlt: "Families participating at a Mobile Rec stop",
+          imageSrc: "/rec.jpg",
+          imageAlt: "Kids playing outside with Mobile Recreation staff",
         },
 
         // OUTCOME
@@ -134,12 +125,12 @@ export default function FederalWayMobileRecCase() {
           intro:
             "By addressing discoverability, outreach, and partnerships, attendance grew significantly between the pilot and our most recent season.",
           bullets: [
-            { title: "266 participants → 512", body: "Pilot summer 2023 to summer 2025 — ≈92% growth (nearly doubled)." },
+            { title: "266 participants → 512", body: "Pilot summer 2023 to summer 2025 ≈ 92% growth (nearly doubled)." },
             { title: "Recurring families", body: "Repeat participants increased from 18% to 39%." },
             { title: "Partner referrals", body: "Cross-attendance from Skyhawks/Day Camp/PacNW accounted for 26% increase in participants." },
           ],
-          imageSrc: "/projects/fwmr/route.jpg",
-          imageAlt: "Route and timing overview",
+          imageSrc: "/park.jpg",
+          imageAlt: "Picture of park program with families doing outdoor activities",
         },
       ]}
     />
