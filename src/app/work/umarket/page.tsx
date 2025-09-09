@@ -1,4 +1,3 @@
-// src/app/work/u-market/page.tsx
 import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -35,13 +34,14 @@ export default function UMarketPage() {
             <li>• Budget Mode: price caps, rental options, and alerts</li>
           </ul>
 
-          <div className="mt-8">
-            <Link
-              href="/work"
-              className="inline-flex items-center rounded-full border border-neutral-300 px-5 py-2 text-sm hover:bg-neutral-50 transition"
+          {/* Read more link */}
+          <div className="mt-6">
+            <a
+              href="#details"
+              className="text-sm text-neutral-600 hover:text-neutral-900 cursor-pointer no-underline"
             >
-              View all projects
-            </Link>
+              Read more
+            </a>
           </div>
         </div>
 
@@ -49,7 +49,7 @@ export default function UMarketPage() {
         <div className="col-span-12 lg:col-span-7">
           <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-200">
             <Image
-              src="/desktop4.png" // TODO: replace with your asset
+              src="/desktop4.png"
               alt="UMarket home — student marketplace overview"
               fill
               className="object-cover"
@@ -60,14 +60,14 @@ export default function UMarketPage() {
         </div>
       </section>
 
-      {/* 02 — Three-up details (images first, text below) */}
-      <section className="mt-16 md:mt-54 max-w-[1400px] mx-auto">
+      {/* 02 — Three-up details */}
+      <section id="details" className="mt-16 md:mt-54 max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 gap-10">
           {/* Images */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <figure className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
               <Image
-                src="/desktop5.png" // TODO
+                src="/desktop5.png"
                 alt="Listings — textbooks, electronics, and supplies"
                 fill
                 className="object-cover"
@@ -76,7 +76,7 @@ export default function UMarketPage() {
             </figure>
             <figure className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
               <Image
-                src="/desktop7.png" // TODO
+                src="/desktop7.png"
                 alt="Checkout — student discounts and pickup lockers"
                 fill
                 className="object-cover"
@@ -85,7 +85,7 @@ export default function UMarketPage() {
             </figure>
             <figure className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
               <Image
-                src="/desktop6.png" // TODO
+                src="/desktop6.png"
                 alt="Profile — orders, rentals, and sell-back"
                 fill
                 className="object-cover"
@@ -117,12 +117,9 @@ export default function UMarketPage() {
         </div>
       </section>
 
-      {/* 03 — Video Showcase (black section) */}
+      {/* 03 — Video Showcase */}
       <section className="mt-20 md:mt-28 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-black">
         <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-16 md:py-24">
-          <div className="flex items-center justify-between gap-6 flex-wrap">
-          </div>
-
           <div className="mt-8 md:mt-10 relative rounded-2xl overflow-hidden ring-1 ring-white/10 bg-neutral-900">
             <video
               className="w-full h-full"
@@ -131,13 +128,23 @@ export default function UMarketPage() {
               loop
               playsInline
               controls={false}
-              poster="/projects/umarket/video-poster.jpg" // optional
+              poster="/projects/umarket/video-poster.jpg"
             >
               <source src="/placeholder.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
         </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="mt-20 md:mt-58 max-w-[1400px] mx-auto text-center">
+        <Link
+          href="/work"
+          className="inline-flex items-center rounded-full border border-neutral-800 px-25 py-4 text-base font-medium hover:bg-neutral-50 transition"
+        >
+          View more projects
+        </Link>
       </section>
     </main>
   );

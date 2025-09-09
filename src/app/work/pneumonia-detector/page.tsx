@@ -23,10 +23,10 @@ export default function UHealthPage() {
             UHEALTH
           </h1>
           <p className="mt-6 text-lg text-neutral-700 leading-relaxed">
-            UHealth is a deep learning prototype that predicts pneumonia from chest x-rays.
-            Built under a six-hour hackathon deadline, the project combined model
-            development, interface design, and deployment best practices into an
-            easy-to-understand project.
+            UHealth is a deep learning prototype that predicts pneumonia from
+            chest X-rays. Built under a six-hour hackathon deadline, the project
+            combined model development, interface design, and deployment best
+            practices into an easy-to-understand project.
           </p>
 
           <ul className="mt-6 space-y-2 text-neutral-700">
@@ -36,13 +36,14 @@ export default function UHealthPage() {
             <li>• 2nd place in Tacoma's largest hackathon ever</li>
           </ul>
 
-          <div className="mt-8 flex items-center gap-3">
-            <Link
-              href="/work"
-              className="inline-flex items-center rounded-full border border-neutral-300 px-5 py-2 text-sm hover:bg-neutral-50 transition"
+          {/* Simple Read More link without underline */}
+          <div className="mt-6">
+            <a
+              href="#details"
+              className="text-sm text-neutral-600 hover:text-neutral-900 cursor-pointer no-underline"
             >
-              View all projects
-            </Link>
+              Read more
+            </a>
           </div>
         </div>
 
@@ -62,7 +63,10 @@ export default function UHealthPage() {
       </section>
 
       {/* 02 — Three-up details + text */}
-      <section className="mt-16 md:mt-64 max-w-[1400px] mx-auto">
+      <section
+        id="details"
+        className="mt-16 md:mt-64 max-w-[1400px] mx-auto"
+      >
         <div className="grid grid-cols-1 gap-10">
           {/* Images */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -114,6 +118,16 @@ export default function UHealthPage() {
             </ul>
           </div>
         </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="mt-20 md:mt-58 max-w-[1400px] mx-auto text-center">
+        <Link
+          href="/work"
+          className="inline-flex items-center rounded-full border border-neutral-800 px-25 py-4 text-base font-medium hover:bg-neutral-50 transition"
+        >
+          View more projects
+        </Link>
       </section>
     </main>
   );

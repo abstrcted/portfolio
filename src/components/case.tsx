@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link"; // ← added
 import { useEffect, useMemo, useState, useCallback } from "react";
 
 export type CaseBullet = { title: string; body: string };
@@ -194,19 +195,13 @@ export default function Case({
 
         <div className="col-span-12 md:col-span-7 space-y-16">
           {sections.map((s, i) => (
-            <section
-              id={ids[i]}
-              key={ids[i]}
-              className="space-y-5 scroll-mt-24"
-            >
+            <section id={ids[i]} key={ids[i]} className="space-y-5 scroll-mt-24">
               {s.eyebrow && (
                 <div className="text-xs uppercase tracking-widest text-neutral-500">
                   {s.eyebrow}
                 </div>
               )}
-              <h2 className="text-2xl font-semibold leading-snug">
-                {s.title}
-              </h2>
+              <h2 className="text-2xl font-semibold leading-snug">{s.title}</h2>
               {s.intro && (
                 <p className="border-l-4 border-lime-400 pl-4 text-neutral-700 max-w-prose">
                   {s.intro}
@@ -248,6 +243,16 @@ export default function Case({
           )}
         </aside>
       </div>
+
+      {/* Bottom CTA — View more projects */}
+      <section className="mt-20 md:mt-28 max-w-[1400px] mx-auto text-center">
+        <Link
+          href="/work"
+          className="inline-flex items-center rounded-full border border-neutral-400 px-28 py-4 text-base font-medium hover:bg-neutral-50 transition"
+        >
+          View more projects
+        </Link>
+      </section>
 
       {/* Lightbox */}
       {lightboxSrc && (
