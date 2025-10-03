@@ -6,7 +6,7 @@ export default function FederalWayMobileRecCase() {
     <Case
       title="Mobile Recreation — City of Federal Way"
       subtitle="Bringing structured play to parks and neighborhoods—and making it easy to discover where we’ll be next."
-      role="Researcher & Designer"
+      role="User Researcher"
       client="City of Federal Way Parks & Recreation"
       heroSrc="/recvan.jpg"
       heroAlt="Mobile Recreation event with families doing outdoor activities"

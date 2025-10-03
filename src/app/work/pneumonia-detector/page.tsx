@@ -51,7 +51,7 @@ export default function UHealthPage() {
         <div className="col-span-12 lg:col-span-7">
           <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-200">
             <Image
-              src="/featured-pneumonia.jpg"
+              src="/UHealth2.png"
               alt="UHealth hero — chest X-ray classification interface"
               fill
               className="object-cover"
@@ -72,7 +72,7 @@ export default function UHealthPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <figure className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
               <Image
-                src="/hackathon.jpg"
+                src="/UHealth.png"
                 alt="Upload flow — drag-and-drop with clear states"
                 fill
                 className="object-cover"
@@ -81,7 +81,7 @@ export default function UHealthPage() {
             </figure>
             <figure className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
               <Image
-                src="/hero-3.jpg"
+                src="/hackathon.jpg"
                 alt="Result view — confidence ring with low/medium/high bands"
                 fill
                 className="object-cover"
@@ -90,7 +90,7 @@ export default function UHealthPage() {
             </figure>
             <figure className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
               <Image
-                src="/hero-4.jpg"
+                src="/UHealth1.png"
                 alt="Demo context — judges testing UHealth at UHackathon"
                 fill
                 className="object-cover"

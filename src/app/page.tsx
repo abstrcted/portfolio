@@ -357,7 +357,7 @@ Led design teams and directed UI/UX strategy.`}
           {/* 02 — Pneumonia Detector */}
           <MobileProjectTile
             title="Pneumonia Detector"
-            imageSrc="/featured-pneumonia.jpg"
+            imageSrc="/UHealth1.png"
             href="/work/pneumonia-detector"
           />
           <div className="hidden sm:block">
@@ -366,7 +366,7 @@ Led design teams and directed UI/UX strategy.`}
               title="Pneumonia Detector"
               year="2025"
               tags={["Optimization", "Machine Learning", "Pressure"]}
-              imageSrc="/featured-pneumonia.jpg"
+              imageSrc="/UHealth2.png"
               savingsBadge="92% Prediction Rate"
               usageBadge="SECOND PLACE AT HACKATHON"
               client="Tech Startup Club"

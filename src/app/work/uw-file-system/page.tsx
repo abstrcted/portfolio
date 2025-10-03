@@ -40,7 +40,7 @@ export default function UWFileSystemPage() {
             { title: "Governance", body: "Peer review and approval workflow prior to official submission." },
             { title: "Output", body: "Build and print a clean worksheet directly from the software." },
           ],
-          imageSrc: "/mock1.jpg",
+          imageSrc: "/SetlibFlow.JPG",
           imageAlt: "Worksheet creation and discovery views",
         },
 
