@@ -117,7 +117,7 @@ export default function HotRodDogPage() {
       </section>
 
       {/* 03 — Video Showcase */}
-      <section className="mt-20 md:mt-28 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-black">
+      <section className="mt-20 md:mt-28 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-full bg-black">
         <div className="mx-auto max-w-[1600px] px-6 md:px-10 py-16 md:py-24">
           <div className="mt-8 md:mt-10 relative rounded-2xl overflow-hidden ring-1 ring-white/10 bg-neutral-900">
             <video

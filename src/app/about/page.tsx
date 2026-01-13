@@ -177,7 +177,7 @@ export default function AboutPage() {
       </main>
 
       {/* Full-bleed: by day (light) */}
-      <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-neutral-50 py-8 sm:py-10 md:py-14">
+      <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-full bg-neutral-50 py-8 sm:py-10 md:py-14">
         <div className="container mx-auto px-5 sm:px-6">
           <div className="grid grid-cols-12 gap-6 sm:gap-8 items-start">
             <div className="col-span-12 md:col-span-7 space-y-3 sm:space-y-4">
@@ -245,7 +245,7 @@ export default function AboutPage() {
       </section>
 
       {/* Full-bleed: by night (dark) */}
-      <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-neutral-900 py-8 sm:py-10 md:py-14 text-neutral-50">
+      <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-full bg-neutral-900 py-8 sm:py-10 md:py-14 text-neutral-50">
         <div className="container mx-auto px-5 sm:px-6">
           <div className="grid grid-cols-12 gap-6 sm:gap-8 items-start">
             <div className="col-span-12 md:col-span-7 space-y-3 sm:space-y-4">
