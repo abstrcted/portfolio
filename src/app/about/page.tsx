@@ -104,7 +104,7 @@ export default function AboutPage() {
             <h1 className="text-3xl md:text-4xl font-semibold">I’m Primitivo</h1>
             <p className="text-neutral-700">
               A designer and artist with a background in science, I approach design as more than just a
-              career—it’s a lens through which I see the world. My work in UX is driven by curiosity,
+              career, it’s a lens through which I see the world. My work in UX is driven by curiosity,
               problem-solving, and a desire to craft experiences that feel intuitive and meaningful.
               Blending creativity with structured thinking, I bring both an analytical and artistic
               perspective to design challenges.

@@ -4,74 +4,73 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import clsx from "clsx";
 
-const roles = ["UX", "UI", "Graphics", "Web", "Branding"];
-const DOT_COLOR = "bg-lime-400";
+const roles = ["UX Designer", "UI Engineer", "Creative", "Developer"];
 
 export default function Header() {
   const [roleIndex, setRoleIndex] = useState(0);
   const pathname = usePathname();
-  const contactHref = pathname === "/" ? "#footer" : "/#footer";
 
   useEffect(() => {
     const interval = setInterval(() => {
       setRoleIndex((i) => (i + 1) % roles.length);
-    }, 4000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex h-14 sm:h-16 items-center">
-          {/* LEFT: logo + role */}
-          <div className="w-1/3 flex items-center space-x-2 sm:space-x-3">
-            <Link
-              href="/"
-              aria-label="Go to home"
-              className="inline-flex items-center font-semibold text-black text-base sm:text-lg"
-            >
-              Primitivo
-              <span
-                className={`ml-1 sm:ml-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${DOT_COLOR} inline-block`}
-                aria-label="active"
-              />
-              {/* Animated role — vertically centered & animates in percentages */}
-              <div className="ml-1 sm:ml-2 relative h-4 sm:h-5 overflow-hidden min-w-[64px] sm:min-w-[100px]">
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.span
-                    key={roleIndex}
-                    initial={{ y: "60%", opacity: 0 }}
-                    animate={{ y: "0%", opacity: 1 }}
-                    exit={{ y: "-60%", opacity: 0 }}
-                    transition={{ duration: 0.28, ease: "easeOut" }}
-                    className="absolute inset-0 flex items-center text-neutral-600 leading-none text-xs sm:text-sm whitespace-nowrap"
-                  >
-                    {roles[roleIndex]}
-                  </motion.span>
-                </AnimatePresence>
-              </div>
-            </Link>
+    // Changed: Removed glassmorphism, added border-b, used Sim-1 background color
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#F3F3F3]/90 border-b border-neutral-200/60 backdrop-blur-sm">
+      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+        
+        {/* LEFT: Logo + Status Dot + Animated Role */}
+        <div className="flex items-center gap-3 w-[200px]">
+          <Link href="/" className="font-semibold tracking-tight text-[#111]">
+            Primitivo.
+          </Link>
+          
+          {/* Technical divider */}
+          <span className="h-4 w-[1px] bg-neutral-300"></span>
+          
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-500"></span>
+            </span>
+            
+            <div className="relative h-5 overflow-hidden w-[120px]">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={roleIndex}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "circOut" }}
+                  className="absolute inset-0 flex items-center text-xs font-medium text-neutral-500 uppercase tracking-wide"
+                >
+                  {roles[roleIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
           </div>
+        </div>
 
-          {/* CENTER: nav */}
-          <nav className="flex-1 flex justify-center">
-            <ul className="flex items-center gap-4 sm:gap-8 text-xs sm:text-sm">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/work">Work</Link></li>
-              <li><Link href="/about">About</Link></li>
-            </ul>
-          </nav>
+        {/* CENTER: Navigation */}
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-500">
+          <Link href="/" className={clsx("hover:text-black transition-colors", pathname === "/" && "text-black")}>Home</Link>
+          <Link href="/work" className={clsx("hover:text-black transition-colors", pathname.startsWith("/work") && "text-black")}>Work</Link>
+          <Link href="/about" className={clsx("hover:text-black transition-colors", pathname === "/about" && "text-black")}>About</Link>
+        </nav>
 
-          {/* RIGHT: Contact button */}
-          <div className="w-1/3 flex justify-end">
-            <Link
-              href={contactHref}
-              className="inline-flex items-center rounded-full border border-neutral-300 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm hover:bg-neutral-50 transition"
+        {/* RIGHT: Contact Link (Simple text, no button pill) */}
+        <div className="w-[200px] flex justify-end">
+            <Link 
+                href="mailto:primitivobambao@gmail.com" 
+                className="text-sm font-medium text-neutral-500 hover:text-black transition-colors"
             >
-              Contact
+                Contact →
             </Link>
-          </div>
         </div>
       </div>
     </header>

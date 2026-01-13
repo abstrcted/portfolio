@@ -45,7 +45,7 @@ const projects: Project[] = [
   },
   {
     title: "City of Federal Way Parks Program",
-    kind: "Motion Design",
+    kind: "Program Design, Marketing",
     href: "/work/federal-way-mobile-rec",
     src: "/audio.jpg",
     alt: "Group in store",

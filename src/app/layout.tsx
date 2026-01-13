@@ -1,23 +1,35 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import { SmoothScroll } from "./lenis";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import ScrollToTop from "./scroll-to-top";
+import Header from "@/components/header";
+import Footer from "@/components/footer"; // <--- 1. Import Footer
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  axes: ["opsz"], 
+});
 
 export const metadata: Metadata = {
-  title: "Primitivo — Portfolio",
-  description: "Designer / Developer / Creative",
+  title: "Primitivo's Portfolio",
+  description: "Design Engineer & UX Specialist",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" className={inter.variable}>
+      <body className="antialiased bg-[#F3F3F3] text-[#111111]">
         <SmoothScroll />
         <ScrollToTop />
+        
         <Header />
-        {children}
+        
+        <main className="min-h-screen">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

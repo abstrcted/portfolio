@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link"; // ← added
+import Link from "next/link";
 import { useEffect, useMemo, useState, useCallback } from "react";
+import clsx from "clsx";
 
+// Types remain the same as your original file
 export type CaseBullet = { title: string; body: string };
 export type CaseSection = {
   eyebrow?: string;
@@ -50,7 +52,7 @@ export default function Case({
   );
   const [active, setActive] = useState<string | null>(ids[0] ?? null);
 
-  // Lightbox state
+  // Lightbox logic (kept exactly as you had it)
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [lightboxAlt, setLightboxAlt] = useState<string>("");
 
@@ -73,218 +75,190 @@ export default function Case({
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxSrc, closeLightbox]);
 
-  // Active section highlight
   useEffect(() => {
-    const els = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
+    const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     if (els.length === 0) return;
-
     const obs = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (visible?.target?.id) setActive(visible.target.id);
       },
-      { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.25, 0.5, 0.75] }
+      { rootMargin: "-20% 0px -60% 0px", threshold: [0.1] }
     );
-
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, [ids]);
 
   return (
-    <main className="mx-auto w-full max-w-[1636px] px-3 md:px-6 py-12 md:py-16">
-      {/* HERO BLOCK */}
-      <div className="grid grid-cols-12 gap-0 md:gap-12">
-        <div className="col-span-12 md:col-span-6 bg-neutral-50 px-6 md:px-10 py-12 space-y-8">
-          <header className="space-y-6">
-            <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
+    // Changed: Background matches global theme
+    <main className="min-h-screen pt-24 pb-20">
+      
+      {/* HEADER SECTION */}
+      <div className="container mx-auto px-6 mb-20">
+        <div className="max-w-4xl space-y-6">
+           <Link href="/work" className="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-black transition-colors mb-8 block">
+              ← Back to Archive
+           </Link>
+           <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.95] font-medium tracking-tight text-[#111]">
               {title}
-            </h1>
-            {subtitle && (
-              <p className="border-l-4 border-lime-400 pl-4 text-neutral-700">
-                {subtitle}
+           </h1>
+           {subtitle && (
+              <p className="text-xl md:text-2xl text-neutral-500 font-light leading-relaxed max-w-2xl">
+                 {subtitle}
               </p>
-            )}
-          </header>
-
-          <div className="space-y-6 text-sm">
-            {role && (
-              <div>
-                <div className="text-neutral-500">Role</div>
-                <div className="text-neutral-900 font-medium">{role}</div>
-              </div>
-            )}
-            {client && (
-              <div>
-                <div className="text-neutral-500">Client</div>
-                <div className="text-neutral-900 font-medium">{client}</div>
-              </div>
-            )}
-            {toolsUsed && (
-              <div>
-                <div className="text-neutral-500">Tools Used</div>
-                <div className="text-neutral-900 font-medium">{toolsUsed}</div>
-              </div>
-            )}
-            {liveSiteLabel && (
-              <div>
-                <div className="text-neutral-500">Live Site</div>
-                <div className="text-neutral-900 font-medium">
-                  {liveSiteHref ? (
-                    <a
-                      href={liveSiteHref}
-                      target="_blank"
-                      className="underline decoration-lime-400 underline-offset-4 hover:text-lime-700"
-                    >
-                      {liveSiteLabel}
-                    </a>
-                  ) : (
-                    liveSiteLabel
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
+           )}
         </div>
 
-        <div className="col-span-12 md:col-span-6">
-          <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-200 m-6 md:m-0">
-            {heroSrc && (
-              <Image
+        {/* Project Meta Grid - Styled like a data table */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 border-t border-neutral-200 pt-8">
+           {[
+             { label: "Role", value: role },
+             { label: "Client", value: client },
+             { label: "Tools", value: toolsUsed },
+           ].map((item, i) => (
+             item.value && (
+               <div key={i}>
+                 <span className="block text-xs uppercase tracking-widest text-neutral-400 mb-2">{item.label}</span>
+                 <span className="block text-sm font-medium text-[#111]">{item.value}</span>
+               </div>
+             )
+           ))}
+           {liveSiteLabel && (
+             <div>
+                <span className="block text-xs uppercase tracking-widest text-neutral-400 mb-2">Live Link</span>
+                <a href={liveSiteHref} target="_blank" className="text-sm font-medium text-[#111] border-b border-black pb-0.5 hover:text-neutral-600 transition-colors">
+                  {liveSiteLabel} ↗
+                </a>
+             </div>
+           )}
+        </div>
+      </div>
+
+      {/* HERO IMAGE */}
+      {heroSrc && (
+        <div className="w-full h-[60vh] md:h-[80vh] relative bg-neutral-100 mb-24 overflow-hidden">
+             <Image
                 src={heroSrc}
                 alt={heroAlt || ""}
                 fill
                 className="object-cover"
                 priority
               />
-            )}
-          </div>
         </div>
-      </div>
+      )}
 
-      <hr className="my-12 border-neutral-200/70" />
-
-      {/* TOC + Sections */}
-      <div className="grid grid-cols-12 gap-8 md:gap-12 items-start px-1 md:px-0">
-        <nav className="hidden md:block col-span-2 sticky top-24 self-start">
-          <ul className="space-y-2 text-sm">
-            {sections.map((s, i) => {
-              const id = ids[i];
-              const isActive = active === id;
-              return (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    className={[
-                      "block px-3 py-1.5 rounded-md transition",
-                      isActive
-                        ? "text-lime-700 bg-lime-50 border border-lime-100"
-                        : "text-neutral-500 hover:text-neutral-800 hover:bg-neutral-50",
-                    ].join(" ")}
-                  >
-                    {s.tocLabel || s.title || `Section ${i + 1}`}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+      {/* CONTENT GRID */}
+      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12">
+        
+        {/* Table of Contents (Sticky) */}
+        <nav className="hidden md:block col-span-3 h-full">
+           <div className="sticky top-32 space-y-4">
+              <span className="text-xs font-mono uppercase text-neutral-400 block mb-4">// Index</span>
+              <ul className="space-y-1">
+                {sections.map((s, i) => {
+                  const id = ids[i];
+                  const isActive = active === id;
+                  return (
+                    <li key={id}>
+                      <a
+                        href={`#${id}`}
+                        className={clsx(
+                          "block text-sm transition-all duration-300 border-l-2 pl-4 py-1",
+                          isActive
+                            ? "border-black text-black font-medium"
+                            : "border-neutral-200 text-neutral-400 hover:border-neutral-300 hover:text-neutral-600"
+                        )}
+                      >
+                        {s.tocLabel || s.title}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+           </div>
         </nav>
 
-        <div className="col-span-12 md:col-span-7 space-y-16">
+        {/* Main Content */}
+        <div className="col-span-12 md:col-span-8 md:col-start-5 space-y-24">
           {sections.map((s, i) => (
-            <section id={ids[i]} key={ids[i]} className="space-y-5 scroll-mt-24">
-              {s.eyebrow && (
-                <div className="text-xs uppercase tracking-widest text-neutral-500">
-                  {s.eyebrow}
-                </div>
-              )}
-              <h2 className="text-2xl font-semibold leading-snug">{s.title}</h2>
+            <section id={ids[i]} key={ids[i]} className="scroll-mt-32 space-y-8">
+              
+              {/* Section Header */}
+              <div className="space-y-4">
+                 {s.eyebrow && (
+                    <span className="text-xs font-mono uppercase tracking-widest text-lime-600 block">
+                        {s.eyebrow}
+                    </span>
+                 )}
+                 <h2 className="text-2xl md:text-3xl font-medium text-[#111]">{s.title}</h2>
+              </div>
+              
+              {/* Intro Text */}
               {s.intro && (
-                <p className="border-l-4 border-lime-400 pl-4 text-neutral-700 max-w-prose">
+                <p className="text-lg text-neutral-600 leading-relaxed">
                   {s.intro}
                 </p>
               )}
+
+              {/* Bullets */}
               {s.bullets && (
-                <ul className="space-y-6">
+                <ul className="grid grid-cols-1 gap-6 border-l border-neutral-200 pl-6">
                   {s.bullets.map((b, j) => (
-                    <li key={j}>
-                      <div className="font-medium">{b.title}</div>
-                      <p className="text-neutral-700">{b.body}</p>
+                    <li key={j} className="space-y-1">
+                      <strong className="block text-sm font-medium text-[#111]">{b.title}</strong>
+                      <span className="text-sm text-neutral-500 leading-relaxed">{b.body}</span>
                     </li>
                   ))}
                 </ul>
               )}
-            </section>
-          ))}
-        </div>
 
-        <aside className="col-span-12 md:col-span-3 space-y-8 md:sticky md:top-20">
-          {sections.map(
-            (s, i) =>
-              s.imageSrc && (
+              {/* Section Image */}
+              {s.imageSrc && (
                 <button
-                  key={`rail-${i}`}
                   type="button"
                   onClick={() => openLightbox(s.imageSrc!, s.imageAlt)}
-                  className="group relative block w-full aspect-[3/4] rounded-2xl overflow-hidden bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-lime-400"
-                  aria-label={`Open image: ${s.imageAlt || "case image"}`}
+                  className="w-full relative aspect-[16/10] bg-neutral-100 overflow-hidden cursor-zoom-in group"
                 >
-                  <Image
+                   <Image
                     src={s.imageSrc}
                     alt={s.imageAlt || ""}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-zoom-in"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </button>
-              )
-          )}
-        </aside>
+              )}
+            </section>
+          ))}
+        </div>
       </div>
 
-      {/* Bottom CTA — View more projects */}
-      <section className="mt-20 md:mt-28 max-w-[1400px] mx-auto text-center">
-        <Link
-          href="/work"
-          className="inline-flex items-center rounded-full border border-neutral-400 px-28 py-4 text-base font-medium hover:bg-neutral-50 transition"
-        >
-          View more projects
-        </Link>
-      </section>
+      {/* View More Projects CTA */}
+      <div className="container mx-auto px-6 mt-20 mb-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#111] text-white text-sm uppercase tracking-widest font-medium hover:bg-neutral-800 transition-colors"
+          >
+            View More Projects
+            <span className="text-lg">→</span>
+          </Link>
+        </div>
+      </div>
 
-      {/* Lightbox */}
+      {/* Lightbox Overlay */}
       {lightboxSrc && (
         <div
-          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Image viewer"
+          className="fixed inset-0 z-[100] bg-white/95 flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
           onClick={closeLightbox}
         >
-          <button
-            onClick={closeLightbox}
-            className="fixed top-4 right-4 z-[110] w-12 h-12 rounded-full bg-white/95 hover:bg-white shadow focus:outline-none focus:ring-2 focus:ring-lime-400 flex items-center justify-center text-base font-medium"
-            aria-label="Close image"
-          >
-            ✕
-          </button>
-
-          <div
-            className="relative max-w-[95vw] max-h-[90vh] w-full h-full flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="relative w-full h-full">
+           <div className="relative w-full h-full">
               <Image
                 src={lightboxSrc}
                 alt={lightboxAlt}
                 fill
-                className="object-contain select-none"
-                priority
+                className="object-contain"
               />
-            </div>
-          </div>
+           </div>
         </div>
       )}
     </main>
